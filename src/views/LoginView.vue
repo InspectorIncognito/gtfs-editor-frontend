@@ -1,23 +1,36 @@
 <template>
-  <div>
-    <h2>Login</h2>
-    <form @submit.prevent="login">
-      <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" v-model="username" required>
+  <div class="body">
+    <div class="user-container">
+      <div id="login" class="user-form-container">
+        <div class="user-header">User Login</div>
+        <form class= "user-form" @submit.prevent="login">
+          <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" v-model="username" required>
+          </div>
+          <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" v-model="password" required>
+            <a href="/ruta-recuperar-contraseña">Forgot Password?</a>
+          </div>
+          <div>
+            <button class="btn" type="submit">Login</button>
+          </div>
+        </form>
+        <div class="user-link">
+          <label>Don't have an account?</label>
+          <a href="/register">SIGN UP NOW</a>
+        </div>
       </div>
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password" required>
-      </div>
-      <button type="submit">Login</button>
-    </form>
-    <div v-if="errors">{{ errors }}</div>
+
+      <div v-if="errors">{{ errors }}</div>
+    </div>
+
   </div>
 </template>
 
 <script>
-import auth from '@/api/user/auth'
+import auth from "../api/user/auth";
 import httpClient from "../api/httpClient";
 
 export default {
@@ -25,7 +38,7 @@ export default {
     return {
       username: null,
       password: null,
-      errors: {}
+      errors: ''
     };
   },
   methods: {
@@ -36,8 +49,9 @@ export default {
         httpClient.defaults.headers.common['HTTP_USER_ID'] = this.username;
         httpClient.defaults.headers.common['HTTP_USER_TOKEN'] = token;
 
-        this.error = {};
+        this.error = '';
       }).catch((error) => {
+        //Cambiar esto
         this.errors = error.response.data;
       });
     },

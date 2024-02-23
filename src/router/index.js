@@ -4,7 +4,9 @@ import VueRouter from 'vue-router'
 
 import NotFound from '../views/NotFound.vue'
 
+import RegisterView from "../views/RegisterView.vue";
 import LoginView from "../views/LoginView.vue";
+
 import MyProjects from '../views/MyProjects.vue'
 import ProjectDashboard from '../views/ProjectDashboard.vue'
 import CalendarView from '../views/CalendarView.vue'
@@ -35,7 +37,13 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: LoginView,
+    component: LoginView
+
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: RegisterView
 
   },
   {

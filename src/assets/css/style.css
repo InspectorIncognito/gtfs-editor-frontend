@@ -803,3 +803,93 @@ a.disabled {color: var(--gris-medio); cursor: default;}
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
 }
+
+/* ============  LOGIN AND REGISTER  ============== */
+.user-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+}
+
+.user-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--link2);
+    color: white;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 30px 0 20px 0;
+    border-radius: 8px;
+    width: 100%;
+    box-shadow: 0 4px 10px 0 rgba(31,43,50,0.10);
+}
+
+.user-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 10px 0 rgba(31,43,50,0.10);
+    border-radius: 8px;
+    width: 500px;
+}
+
+.user-form{
+    padding-top: 10px;
+    width: 340px;
+}
+
+.user-form div{
+    padding-top: 30px;
+}
+
+.user-form a{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    font-size: 15px;
+    padding-top: 10px;
+
+}
+
+.user-form input {
+    border: 1px solid #ccc;
+    background-color: var(--base2);
+}
+
+.user-form input:focus {
+    background-color: white;
+}
+
+.user-container .btn {
+    border-radius: 8px;
+    background: var(--link2);
+    width: 100%;
+}
+
+.user-container .btn:before {
+    border-radius: 8px;
+}
+
+.forgot-password{
+    padding-top: 0;
+}
+
+.user-link{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+    padding-bottom: 40px;
+    font-size: 15px;
+}
+
+.user-link label{
+    color:var(--gris-medio2);
+}
+
+/* ============  REGISTER   ============== */
+
+
+
