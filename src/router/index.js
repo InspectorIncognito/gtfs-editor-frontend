@@ -4,6 +4,8 @@ import VueRouter from 'vue-router'
 
 import NotFound from '../views/NotFound.vue'
 
+import RecoverPasswordView from "../views/RecoverPasswordView.vue";
+import RecoverPasswordRequestView from "../views/RecoverPasswordRequestView.vue"
 import RegisterView from "../views/RegisterView.vue";
 import LoginView from "../views/LoginView.vue";
 
@@ -27,6 +29,7 @@ import Shapes from '../views/Shapes.vue'
 import ShapeEditorView from '../views/ShapeEditorView.vue'
 
 
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -45,6 +48,16 @@ const routes = [
     name: 'register',
     component: RegisterView
 
+  },
+  {
+    path: '/recover-password-request',
+    name: 'recover-password-request',
+    component: RecoverPasswordRequestView
+  },
+  {
+    path: '/recover-password',
+    name: 'recover-password',
+    component: RecoverPasswordView
   },
   {
     path: '/myprojects',
