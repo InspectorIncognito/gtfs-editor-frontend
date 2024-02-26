@@ -889,7 +889,15 @@ a.disabled {color: var(--gris-medio); cursor: default;}
     color:var(--gris-medio2);
 }
 
-/* ============  REGISTER   ============== */
+/* ============  USER BAR EN APP VUE Y CAMBIO EN BREADCRUMS   ============== */
 
+.supercontent .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-
+.user-bar {
+    display: flex;
+    gap: 14px;
+}

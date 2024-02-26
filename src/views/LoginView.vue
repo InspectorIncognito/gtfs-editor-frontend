@@ -2,7 +2,7 @@
   <div class="body">
     <div class="user-container">
       <div id="login" class="user-form-container">
-        <div class="user-header">User Login</div>
+        <div class="user-header">User Log In</div>
         <form class= "user-form" @submit.prevent="login">
           <div>
             <label for="username">Username:</label>
@@ -50,6 +50,7 @@ export default {
         httpClient.defaults.headers.common['HTTP_USER_TOKEN'] = token;
 
         this.error = '';
+        this.$emit('userLoggedIn', true);
       }).catch((error) => {
         //Cambiar esto
         this.errors = error.response.data;
