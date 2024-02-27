@@ -21,14 +21,18 @@
     <div class="supercontent">
       <div class="container">
         <Breadcrumbs></Breadcrumbs>
+        <div class="user-bar">
+          <router-link v-if="!isUserLoggedIn" :to="{ name: 'login' }" class="login-button">Log In</router-link>
+          <router-link v-if="!isUserLoggedIn" :to="{ name: 'register' }" class="signin-button">Sign Up</router-link>
+          <router-link v-if="isUserLoggedIn" @click="logout" :to="{ name: 'login' }" class="logout-button" >Log Out</router-link>
+        </div>
       </div>
-      <router-view/>
+      <router-view @userLoggedIn="onUserLoggedIn"></router-view>
     </div>
   </div>
 </template>
 
 <style scoped>
-
 @import "./assets/css/base.css";
 @import "./assets/css/style.css";
 @import "./assets/css/temp.css";
@@ -41,6 +45,7 @@
 import {LANGUAGE_KEY} from '@/utils/consts.js';
 import LocaleSwitcher from './components/LocaleSwitcher'
 import 'v-tooltip/dist/v-tooltip.css';
+import auth from "./api/user/auth";
 
 require('material-icons');
 
@@ -49,6 +54,23 @@ export default {
   name: 'App',
   components: {
     LocaleSwitcher
+  },
+  data: function () {
+    return {
+      isUserLoggedIn: false
+    }
+  },
+  methods: {
+    onUserLoggedIn(isLoggedIn) {
+      this.isUserLoggedIn = isLoggedIn;
+    },
+    logout() {
+      auth.logout().then(() => {
+        this.isUserLoggedIn = false;
+      }).catch((error) => {
+        console.error('Error logging out:', error);
+      });
+    }
   },
   mounted() {
     let locale = window.localStorage.getItem(LANGUAGE_KEY);
