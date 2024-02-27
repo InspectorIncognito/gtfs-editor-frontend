@@ -2,7 +2,7 @@
   <div class="body">
     <div class="user-container">
       <div id= "recover-password-request" class="user-form-container">
-        <div class="user-header">Recover Password</div>
+        <div class="user-header">Forgot Password?</div>
         <form class= "user-form" @submit.prevent="recoverPasswordRequest">
           <div>
             <label for="username">Username:</label>
@@ -36,8 +36,7 @@ export default {
   methods: {
     async recoverPasswordRequest() {
       recoverPassword.recoverPasswordRequest(this.username).then(() => {
-        //Cambiar esto
-        console.log('registro exitoso');
+        this.error = '';
       }).catch((error) => {
         //Cambiar esto
         this.errors = error.response.data;

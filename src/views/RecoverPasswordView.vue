@@ -1,28 +1,25 @@
 <template>
   <div class="body">
     <div class="user-container">
-      <div id="login" class="user-form-container">
-        <div class="user-header">User Login</div>
-        <form class= "user-form" @submit.prevent="login">
-          <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" v-model="username" required>
-          </div>
+      <div id="recover-password" class="user-form-container">
+        <div class="user-header">New Password</div>
+        <div class="user-remark">
+          Please create a new password
+        </div>
+        <form class= "user-form" @submit.prevent="validate">
           <div>
             <label for="password">Password:</label>
             <input type="password" id="password" v-model="password" required>
-            <a href="/ruta-recuperar-contraseña">Forgot Password?</a>
           </div>
           <div>
-            <button class="btn" type="submit">Login</button>
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" v-model="confirmPassword" required>
+          </div>
+          <div>
+            <button class="btn" type="submit">Change</button>
           </div>
         </form>
-        <div class="user-link">
-          <label>Don't have an account?</label>
-          <a href="/register">SIGN UP NOW</a>
-        </div>
       </div>
-
       <div v-if="errors">{{ errors }}</div>
     </div>
 
@@ -30,31 +27,33 @@
 </template>
 
 <script>
-import auth from "../api/user/auth";
-import httpClient from "../api/httpClient";
+import recoverPassword from "../api/user/recoverPassword";
 
 export default {
+  props: ['recoveryToken'],
   data() {
     return {
-      username: null,
       password: null,
+      confirmPassword: null,
       errors: ''
     };
   },
   methods: {
-    async login() {
-      auth.login(this.username, this.password).then(response => {
-        const token = response.data;
-
-        httpClient.defaults.headers.common['HTTP_USER_ID'] = this.username;
-        httpClient.defaults.headers.common['HTTP_USER_TOKEN'] = token;
-
+    async change() {
+      recoverPassword.recoverPassword(this.password, this.recoveryToken).then(() => {
         this.error = '';
       }).catch((error) => {
         //Cambiar esto
         this.errors = error.response.data;
       });
     },
+    validate() {
+      if (this.password === this.confirmPassword) {
+        this.change();
+      } else {
+        this.errors = 'Passwords do not match';
+      }
+    }
   },
 };
 </script>

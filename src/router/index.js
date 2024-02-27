@@ -55,9 +55,12 @@ const routes = [
     component: RecoverPasswordRequestView
   },
   {
-    path: '/recover-password',
+    path: '/user/recover-password',
     name: 'recover-password',
-    component: RecoverPasswordView
+    component: RecoverPasswordView,
+    props: (route) => ({
+      recoveryToken: route.query.recoveryToken
+    })
   },
   {
     path: '/myprojects',
