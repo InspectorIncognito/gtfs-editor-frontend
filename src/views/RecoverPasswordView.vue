@@ -42,8 +42,8 @@ export default {
     async change() {
       recoverPassword.recoverPassword(this.password, this.recoveryToken).then(() => {
         this.error = '';
+        this.$router.push({name: 'login'})
       }).catch((error) => {
-        //Cambiar esto
         this.errors = error.response.data;
       });
     },
