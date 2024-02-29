@@ -4,6 +4,9 @@ import VueRouter from 'vue-router'
 
 import NotFound from '../views/NotFound.vue'
 
+import ConfirmationEmailView from "../views/ConfirmationEmailView.vue";
+import RegisterView from "../views/RegisterView.vue";
+import LoginView from "../views/LoginView.vue";
 
 import MyProjects from '../views/MyProjects.vue'
 import ProjectDashboard from '../views/ProjectDashboard.vue'
@@ -30,7 +33,28 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '',
-    redirect: '/myprojects'
+    redirect: '/login'
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
+
+  },
+  {
+    path: '/user/email-verification',
+    name: 'email-verification',
+    component: ConfirmationEmailView,
+    props: (route) => ({
+      verificationToken: route.query.verificationToken
+    })
+
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: RegisterView
+
   },
   {
     path: '/myprojects',

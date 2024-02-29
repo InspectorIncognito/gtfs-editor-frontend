@@ -8,6 +8,9 @@
 4. compile or run project
 
 ## Project setup
+
+Having Node version `14.17.3` and npm version `6.14.13` installed is recommended.
+
 ```
 npm install
 ```
