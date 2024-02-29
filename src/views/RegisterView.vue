@@ -3,7 +3,7 @@
     <div class="user-container">
       <div v-if="!registered" id="register" class="user-form-container">
         <div class="user-header">Create Account</div>
-        <form class="user-form" @submit.prevent="registerUser">
+        <form class="user-form" @submit.prevent="validate">
           <div>
             <label for="username">Username:</label>
             <input type="text" id="username" v-model="registerData.username" required />
@@ -15,6 +15,10 @@
           <div>
             <label for="password">Password:</label>
             <input type="password" id="password" v-model="registerData.password" required />
+          </div>
+          <div>
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" v-model="confirmPassword" required>
           </div>
           <div>
             <label for="name">Name:</label>
@@ -34,7 +38,7 @@
         </div>
         <div v-if="errors">{{ errors }}</div>
       </div>
-      <div v-if="registered" class="success-register-message">
+      <div v-if="registered" class="user-success-message">
         Your account has been created successfully. You will receive an email to verify your account.
       </div>
     </div>
@@ -54,8 +58,9 @@ export default {
         name: null,
         last_name: null,
       },
-      errors: '',
-      registered: true
+      confirmPassword: null,
+      registered: false,
+      errors: ''
     };
   },
   methods: {
@@ -67,6 +72,28 @@ export default {
         this.errors = error.response.data;
       });
     },
+    validate() {
+      if (this.validatePassword() && this.validateMatch()) {
+        this.registerUser();
+      }
+    },
+    validateMatch() {
+      if (this.password === this.confirmPassword) {
+        return true;
+      } else {
+        this.errors = 'Passwords do not match.';
+        return false;
+      }
+    },
+    validatePassword() {
+      const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+      const isValid = passwordRegex.test(this.password);
+      if (!isValid) {
+        this.errors = 'The password must be at least 8 characters long and ' +
+          'contain at least one uppercase letter, one lowercase letter, and one number.';
+      }
+      return isValid;
+    }
   },
 };
 </script>

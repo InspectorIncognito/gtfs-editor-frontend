@@ -51,8 +51,8 @@ export default {
 
         this.error = '';
         this.$emit('userLoggedIn', true);
+        this.$router.push({ name: 'myprojects' });
       }).catch((error) => {
-        //Cambiar esto
         this.errors = error.response.data;
       });
     },
