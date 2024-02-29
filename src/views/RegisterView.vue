@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <div class="user-container">
-      <div id="register" class="user-form-container">
+      <div v-if="!registered" id="register" class="user-form-container">
         <div class="user-header">Create Account</div>
         <form class="user-form" @submit.prevent="registerUser">
           <div>
@@ -34,6 +34,9 @@
         </div>
         <div v-if="errors">{{ errors }}</div>
       </div>
+      <div v-if="registered" class="success-register-message">
+        Your account has been created successfully. You will receive an email to verify your account.
+      </div>
     </div>
   </div>
 
@@ -51,16 +54,16 @@ export default {
         name: null,
         last_name: null,
       },
-      errors: ''
+      errors: '',
+      registered: true
     };
   },
   methods: {
     async registerUser() {
       register.register(this.registerData).then(() => {
-        //Cambiar esto
         console.log('registro exitoso');
+        this.registered = true;
       }).catch((error) => {
-        //Cambiar esto
         this.errors = error.response.data;
       });
     },
