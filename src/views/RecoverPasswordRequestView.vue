@@ -3,6 +3,9 @@
     <div class="user-container">
       <div id= "recover-password-request" class="user-form-container">
         <div class="user-header">Forgot Password?</div>
+        <div class="user-remark">
+          Please enter your username.
+        </div>
         <form class= "user-form" @submit.prevent="recoverPasswordRequest">
           <div>
             <label for="username">Username:</label>
