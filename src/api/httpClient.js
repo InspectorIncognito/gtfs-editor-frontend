@@ -4,8 +4,8 @@ const httpClient = axios.create({
     baseURL: process.env.VUE_APP_BASE_URL,
     timeout: 5000, // indicates, 1000ms ie. 1 second
     headers: {
-        'USER-ID': '',
-        'USER-TOKEN': '',
+        'User-Id': '',
+        'User-Token': '',
         "Content-Type": "application/json",
     }
 });
