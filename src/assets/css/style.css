@@ -909,6 +909,20 @@ a.disabled {color: var(--gris-medio); cursor: default;}
 }
 
 /* ============  USER BAR IN APP VUE AND CHANGE IN BREADCRUMS   ============== */
+.user-success-message{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 60%;
+    padding: 18px 20px 18px 20px;
+    color: #658165;
+    background-color: rgba(143, 188, 143, 0.4);
+    border-radius: 8px;
+    border: 2px solid #99c799;
+}
+
+/* ============  USER BAR EN APP VUE Y CAMBIO EN BREADCRUMS   ============== */
 
 .supercontent .container{
     display: flex;
