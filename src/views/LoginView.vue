@@ -11,7 +11,7 @@
           <div>
             <label for="password">Password:</label>
             <input type="password" id="password" v-model="password" required>
-            <a href="/recover-password-request">Forgot Password?</a>
+            <a href="/ruta-recuperar-contraseña">Forgot Password?</a>
           </div>
           <div>
             <button class="btn" type="submit">Login</button>

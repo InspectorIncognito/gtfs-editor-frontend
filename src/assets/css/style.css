@@ -889,26 +889,6 @@ a.disabled {color: var(--gris-medio); cursor: default;}
     color:var(--gris-medio2);
 }
 
-/* ============  RECOVER PASSWORD REQUEST  ============== */
-
-#recover-password-request .user-form{
-    padding-top: 0;
-}
-
-
-#recover-password-request .user-link {
-    padding-top: 20px;
-}
-
-#recover-password-request .user-link label{
-    color:var(--gris-medio);
-}
-
-#recover-password-request .user-link label b {
-    color: var(--gris-medio2);
-}
-
-/* ============  USER BAR IN APP VUE AND CHANGE IN BREADCRUMS   ============== */
 .user-success-message{
     display: flex;
     flex-direction: column;
@@ -928,34 +908,9 @@ a.disabled {color: var(--gris-medio); cursor: default;}
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
 
 .user-bar {
     display: flex;
     gap: 14px;
-}
-
-/* ============   RECOVER PASSWORD ============== */
-
-#recover-password .user-form{
-    padding-top: 0;
-}
-
-#recover-password .btn {
-    margin-bottom: 30px;
-}
-
-
-.user-remark{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 67%;
-    padding: 14px;
-    color: #658165;
-    background-color: rgba(143, 188, 143, 0.4);
-    border-radius: 8px;
-    margin-top: 30px;
-    border: 2px solid #99c799;
 }
