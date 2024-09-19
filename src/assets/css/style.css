@@ -931,11 +931,6 @@ a.disabled {color: var(--gris-medio); cursor: default;}
 
 }
 
-.user-bar {
-    display: flex;
-    gap: 14px;
-}
-
 /* ============   RECOVER PASSWORD ============== */
 
 #recover-password .user-form{

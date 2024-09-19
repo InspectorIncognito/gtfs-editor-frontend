@@ -9,23 +9,26 @@
         </div>
         <div class="top-menu">
           <locale-switcher/>
-          <router-link :to="{name: 'myprojects'}" class="btn-top"><span>{{ $t('myProjects.myProjects') }}</span><i
-              class="material-icons">layers</i></router-link>
+          <router-link :to="{name: 'myprojects'}" class="btn-top">
+            <span>{{ $t('myProjects.myProjects') }}</span><i class="material-icons">layers</i>
+          </router-link>
           <a target="_blank" href="https://www.transapp.cl" class="btn-top"><span>{{ $t('general.website') }}</span><i
               class="material-icons">public</i></a>
           <a target="_blank" href="https://transapp.cl/#contacto"
              class="btn-top"><span>{{ $t('general.contact') }}</span><i class="material-icons">mail</i></a>
+
+          <router-link v-if="!isUserLoggedIn" :to="{ name: 'login' }" class="btn-top">
+            <span>{{ $t('user.login') }}</span><i class="material-icons">login</i>
+          </router-link>
+          <router-link v-if="isUserLoggedIn" @click="logout" :to="{ name: 'login' }" class="btn-top">
+            <span>{{ $t('user.logout') }}</span><i class="material-icons">logout</i>
+          </router-link>
         </div>
       </div>
     </header>
     <div class="supercontent">
       <div class="container">
         <Breadcrumbs></Breadcrumbs>
-        <div class="user-bar">
-          <router-link v-if="!isUserLoggedIn" :to="{ name: 'login' }" class="login-button">Log In</router-link>
-          <router-link v-if="!isUserLoggedIn" :to="{ name: 'register' }" class="signin-button">Sign Up</router-link>
-          <router-link v-if="isUserLoggedIn" @click="logout" :to="{ name: 'login' }" class="logout-button" >Log Out</router-link>
-        </div>
       </div>
       <router-view @userLoggedIn="onUserLoggedIn"></router-view>
     </div>

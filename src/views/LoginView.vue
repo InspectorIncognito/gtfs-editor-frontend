@@ -2,30 +2,27 @@
   <div class="body">
     <div class="user-container">
       <div id="login" class="user-form-container">
-        <div class="user-header">User Log In</div>
+        <div class="user-header">{{ $t('user.login') }}</div>
         <form class= "user-form" @submit.prevent="login">
           <div>
-            <label for="username">Username:</label>
+            <label for="username">{{ $t('user.username') }}:</label>
             <input type="text" id="username" v-model="username" required>
           </div>
           <div>
-            <label for="password">Password:</label>
+            <label for="password">{{ $t('user.password') }}:</label>
             <input type="password" id="password" v-model="password" required>
-            <a href="/recover-password-request">Forgot Password?</a>
+            <a href="/recover-password-request">{{ $t('user.forgotPasswordQuestion') }}</a>
           </div>
           <div>
-            <button class="btn" type="submit">Login</button>
+            <button class="btn" type="submit">{{ $t('user.login') }}</button>
           </div>
         </form>
         <div class="user-link">
-          <label>Don't have an account?</label>
-          <a href="/register">SIGN UP NOW</a>
+          <a href="/register">{{ $t('user.createAccount') }}</a>
         </div>
       </div>
-
       <div v-if="errors">{{ errors }}</div>
     </div>
-
   </div>
 </template>
 

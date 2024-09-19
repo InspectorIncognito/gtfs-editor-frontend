@@ -1,4 +1,13 @@
 {
+  "user": {
+    "login": "Login",
+    "logout": "Logout",
+    "signin": "Sign in",
+    "username": "Username",
+    "password": "Password",
+    "forgotPasswordQuestion": "Forgot password?",
+    "createAccount": "Create account"
+  },
   "general": {
     "project": "Project",
     "cancel": "Cancel",
