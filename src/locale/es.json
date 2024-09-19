@@ -1,12 +1,19 @@
 {
   "user": {
+    "name": "Nombre",
+    "lastName": "Apellido",
     "login": "Iniciar sesión",
     "logout": "Cerrar sesión",
     "signin": "Registrarse",
+    "signup": "Crear cuenta",
     "username": "Nombre de usuario",
     "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
     "forgotPasswordQuestion": "¿Has olvidado tu contraseña?",
-    "createAccount": "Crear cuenta"
+    "createAccount": "Crear cuenta",
+    "email": "Correo electrónico",
+    "haveAccountQuestion": "¿Ya tienes una cuenta?",
+    "accountCreatedSuccessfully": "Tu cuenta ha sido creada exitosamente. Recibirás un correo electrónico para verificar tu cuenta."
   },
   "general": {
     "project": "Proyecto",

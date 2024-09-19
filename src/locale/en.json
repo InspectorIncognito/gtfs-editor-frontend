@@ -1,12 +1,19 @@
 {
   "user": {
+    "name": "Name",
+    "lastName": "Last Name",
     "login": "Login",
     "logout": "Logout",
     "signin": "Sign in",
+    "signup": "Sign up",
     "username": "Username",
     "password": "Password",
+    "confirmPassword": "Confirm password",
     "forgotPasswordQuestion": "Forgot password?",
-    "createAccount": "Create account"
+    "createAccount": "Create account",
+    "email": "Email",
+    "haveAccountQuestion": "Already have an account?",
+    "accountCreatedSuccessfully": "Your account has been created successfully. You will receive an email to verify your account."
   },
   "general": {
     "project": "Project",
