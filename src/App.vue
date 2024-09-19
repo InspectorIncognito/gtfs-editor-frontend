@@ -9,7 +9,7 @@
         </div>
         <div class="top-menu">
           <locale-switcher/>
-          <router-link :to="{name: 'myprojects'}" class="btn-top">
+          <router-link v-if="isUserLoggedIn" :to="{name: 'myprojects'}" class="btn-top">
             <span>{{ $t('myProjects.myProjects') }}</span><i class="material-icons">layers</i>
           </router-link>
           <a target="_blank" href="https://www.transapp.cl" class="btn-top"><span>{{ $t('general.website') }}</span><i
@@ -27,7 +27,7 @@
       </div>
     </header>
     <div class="supercontent">
-      <div class="container">
+      <div v-if="isUserLoggedIn" class="container">
         <Breadcrumbs></Breadcrumbs>
       </div>
       <router-view @userLoggedIn="onUserLoggedIn"></router-view>
