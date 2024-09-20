@@ -5,20 +5,8 @@
         <div class="user-header">{{ $t("user.createAccount") }}</div>
         <form class="user-form" @submit.prevent="validate">
           <div>
-            <label for="username">{{ $t("user.username") }}:</label>
-            <input type="text" id="username" v-model="registerData.username" required/>
-          </div>
-          <div>
-            <label for="email">{{ $t("user.email") }}:</label>
+            <label for="email">{{ $t("user.email") }} ({{ $t("user.username") }}):</label>
             <input type="email" id="email" v-model="registerData.email" required/>
-          </div>
-          <div>
-            <label for="password">{{ $t("user.password") }}:</label>
-            <input type="password" id="password" v-model="registerData.password" required/>
-          </div>
-          <div>
-            <label for="confirm-password">{{ $t("user.confirmPassword") }}:</label>
-            <input type="password" id="confirm-password" v-model="confirmPassword" required>
           </div>
           <div>
             <label for="name">{{ $t("user.name") }}:</label>
@@ -27,6 +15,14 @@
           <div>
             <label for="last_name">{{ $t("user.lastName") }}:</label>
             <input type="text" id="last_name" v-model="registerData.last_name" required/>
+          </div>
+          <div>
+            <label for="password">{{ $t("user.password") }}:</label>
+            <input type="password" id="password" v-model="registerData.password" required/>
+          </div>
+          <div>
+            <label for="confirm-password">{{ $t("user.confirmPassword") }}:</label>
+            <input type="password" id="confirm-password" v-model="confirmPassword" required>
           </div>
           <div>
             <button class="btn" type="submit">{{ $t("user.signup") }}</button>
@@ -65,6 +61,7 @@ export default {
   },
   methods: {
     async registerUser() {
+      this.registerData.username = this.registerData.email;
       register.register(this.registerData).then(() => {
         console.log('registro exitoso');
         this.registered = true;
@@ -78,7 +75,7 @@ export default {
       }
     },
     validateMatch() {
-      if (this.password === this.confirmPassword) {
+      if (this.registerData.password === this.confirmPassword) {
         return true;
       } else {
         this.errors = 'Passwords do not match.';
@@ -87,7 +84,7 @@ export default {
     },
     validatePassword() {
       const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-      const isValid = passwordRegex.test(this.password);
+      const isValid = passwordRegex.test(this.registerData.password);
       if (!isValid) {
         this.errors = 'The password must be at least 8 characters long and ' +
             'contain at least one uppercase letter, one lowercase letter, and one number.';
