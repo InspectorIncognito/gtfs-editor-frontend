@@ -1,6 +1,7 @@
 <template>
   <ul class="language-switch">
-    <li v-for="locale in locales" :key="locale" @click="switchLocale(locale)" :class="{active: locale===$i18n.locale}">
+    <li v-for="locale in locales" :key="locale" @click="switchLocale(locale)"
+        :class="{active: locale === currentLanguage}">
       <span>{{ getFlag(locale) }} {{ locale }}</span>
     </li>
   </ul>
@@ -8,33 +9,28 @@
 
 
 <script>
-import {LANGUAGE_KEY} from '@/utils/consts.js';
 
 export default {
   name: 'LocaleSwitcher',
-  data() {
-    return {
-      locales: process.env.VUE_APP_I18N_SUPPORTED_LOCALE.split(',')
+  computed: {
+    locales() {
+      return this.$store.getters['lang/getSupportedLocaleList'];
+    },
+    currentLanguage() {
+      return this.$store.getters['lang/getCurrentLanguage'];
     }
   },
   methods: {
     switchLocale(locale) {
-      if (this.$i18n.locale !== locale) {
-        this.$i18n.locale = locale;
-        window.localStorage.setItem(LANGUAGE_KEY, locale);
-      }
+      this.$store.dispatch("lang/changeLanguage", {
+        i18n: this.$i18n,
+        locale: locale
+      });
     },
     getFlag(locale) {
-      switch (locale) {
-        case 'es':
-          return '🇪🇸'
-        case 'en':
-          return '🇺🇸'
-        default:
-          return ''
-      }
+      return this.$store.getters["lang/getFlagByLocaleDict"][locale];
     }
-  },
+  }
 }
 </script>
 
@@ -43,5 +39,11 @@ li {
   text-decoration: underline;
   color: #459CE7;
   cursor: pointer;
+}
+
+li.active {
+  font-weight: 500;
+  color: white;
+  opacity: 1
 }
 </style>

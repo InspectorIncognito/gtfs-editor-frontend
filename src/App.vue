@@ -45,7 +45,6 @@
 </style>
 
 <script>
-import {LANGUAGE_KEY} from '@/utils/consts.js';
 import LocaleSwitcher from './components/LocaleSwitcher'
 import 'v-tooltip/dist/v-tooltip.css';
 import auth from "./api/user/auth";
@@ -76,10 +75,7 @@ export default {
     }
   },
   mounted() {
-    let locale = window.localStorage.getItem(LANGUAGE_KEY);
-    if (locale) {
-      this.$i18n.locale = locale;
-    }
+    this.$store.dispatch('lang/loadLanguage', this.$i18n);
   }
 }
 </script>>
