@@ -74,15 +74,11 @@
       "errors": "Errors",
       "warnings": "Warnings",
       "infos": "Infos",
-      "viewErrors": "View errors",
-      "download": "Download",
+      "viewErrors": "View problems",
+      "download": "Download GTFS",
       "executeButtonLabel": "Run",
       "cancelButtonLabel": "Cancel",
-      "executing": "Executing...",
-      "validationReport": {
-        "title": "GTFS validation report",
-        "downloadReport": "Download report"
-      }
+      "executing": "Executing..."
     },
     "gtfsRequiredData": "GTFS required data",
     "gtfsOptionalData": "GTFS Optional data",

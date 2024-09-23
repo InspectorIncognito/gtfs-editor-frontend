@@ -61,27 +61,23 @@
     <div class="card-content grid end">
       <button class="btn min warning"
               :disabled="!project.gtfs_validation.message"
-              @click="showModal=true"><span>{{ $t('projectDashboard.gtfsBuilder.viewErrors') }}</span><i
+              @click="downloadReportFile"><span>{{ $t('projectDashboard.gtfsBuilder.viewErrors') }}</span><i
           class="material-icons">error_outline</i></button>
       <button class="btn min green" @click="downloadGTFS">
         <span>{{ $t('projectDashboard.gtfsBuilder.download') }}</span><i class="material-icons">save_alt</i></button>
     </div>
-    <ValidatorReportModal v-if="project.gtfs_validation.message" :show="showModal" @close="showModal=false"
-                          :message="project.gtfs_validation.message"></ValidatorReportModal>
   </div>
 </template>
 
 <script>
-import projectsAPI from "@/api/projects.api";
 import {DateTime} from "luxon";
-import ValidatorReportModal from "@/components/project/ValidatorReportModal";
+import FileSaver from 'file-saver';
+
+import projectsAPI from "@/api/projects.api";
 import Enums from "@/utils/enums";
 
 export default {
   name: 'BuildAndValidateGTFS',
-  components: {
-    ValidatorReportModal
-  },
   props: {
     project: {
       type: Object,
@@ -101,6 +97,11 @@ export default {
     }
   },
   methods: {
+    downloadReportFile() {
+      let data = this.project.gtfs_validation.message;
+      let blob = new Blob([data], {type: "text/html;charset=utf-8"});
+      FileSaver.saveAs(blob, "gtfs-validation-report.html");
+    },
     downloadGTFS() {
       projectsAPI.downloadGTFS(this.project.project_id).then(response => {
         let blob = new Blob([response.data], {
