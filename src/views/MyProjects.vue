@@ -42,12 +42,12 @@ export default {
       }
     }
   },
-  computed: mapState([
+  computed: mapState('project', [
     'projectList'
   ]),
   methods: {
     setData(projects) {
-      this.$store.commit('setProjectList', projects);
+      this.$store.commit('project/setProjectList', projects);
     },
     updateProject(newProject) {
       let index = this.projectList.findIndex(project => project.project_id === newProject.project_id);
