@@ -50,8 +50,8 @@
       </ul>
       <div class="m-footer">
         <div class="option-buttons">
-          <button class="btn" @click="downloadCSVData">
-            <span>{{ $t('projectDashboard.gtfsBuilder.validationReport.downloadCSV') }}</span>
+          <button class="btn" @click="downloadReportFile">
+            <span>{{ $t('projectDashboard.gtfsBuilder.validationReport.downloadReport') }}</span>
           </button>
         </div>
       </div>
@@ -140,10 +140,10 @@ export default {
         this.showDetail = !this.showDetail;
       }
     },
-    downloadCSVData() {
+    downloadReportFile() {
       let data = this.message;
-      let blob = new Blob([data], {type: "text/plain;charset=utf-8"});
-      FileSaver.saveAs(blob, "validation-data.csv");
+      let blob = new Blob([data], {type: "text/html;charset=utf-8"});
+      FileSaver.saveAs(blob, "gtfs-validation-report.html");
     },
     beforeEnter: function (el) {
       el.style.height = '0';

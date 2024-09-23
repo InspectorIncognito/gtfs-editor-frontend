@@ -51,6 +51,12 @@
             project.gtfs_validation.warning_number ? project.gtfs_validation.warning_number : ''
           }}</span>
       </li>
+      <li>
+        <span class="lsh">{{ $t('projectDashboard.gtfsBuilder.infos') }}</span>
+        <span class="lst">{{
+            project.gtfs_validation.info_number ? project.gtfs_validation.info_number : ''
+          }}</span>
+      </li>
     </ul>
     <div class="card-content grid end">
       <button class="btn min warning"

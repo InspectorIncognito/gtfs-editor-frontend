@@ -73,6 +73,7 @@
       "buildDuration": "Duración",
       "errors": "Errores",
       "warnings": "Advertencias",
+      "infos": "Obs. generales",
       "viewErrors": "Ver errores",
       "download": "Descargar",
       "executeButtonLabel": "Ejecutar",
@@ -80,7 +81,7 @@
       "executing": "Ejecutando...",
       "validationReport": {
         "title": "Reporte de validación de GTFS",
-        "downloadCSV": "Descargar CSV"
+        "downloadReport": "Descargar reporte"
       }
     },
     "gtfsRequiredData": "GTFS datos requeridos",

@@ -327,6 +327,7 @@ export default {
       this.project.gtfs_validation.message = project.gtfs_validation.message;
       this.project.gtfs_validation.error_number = project.gtfs_validation.error_number;
       this.project.gtfs_validation.warning_number = project.gtfs_validation.warning_number;
+      this.project.gtfs_validation.info_number = project.gtfs_validation.info_number;
       this.project.gtfs_validation.duration = project.gtfs_validation.duration;
       this.retrieveCardData();
     }
