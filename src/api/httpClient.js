@@ -1,14 +1,12 @@
 import axios from 'axios';
 
-import {LANGUAGE_KEY} from '@/utils/consts.js';
+import store from "@/store";
 
 const httpClient = axios.create({
   baseURL: process.env.VUE_APP_BASE_URL,
   timeout: 5000, // indicates, 1000ms ie. 1 second
   headers: {
-    "Content-Type": "application/json",
-    "Content-Language": window.localStorage.getItem(LANGUAGE_KEY),
-    "Accept-Language": window.localStorage.getItem(LANGUAGE_KEY)
+    "Content-Type": "application/json"
   }
 });
 
@@ -45,8 +43,12 @@ const responseInterceptor = response => {
 }
 
 const requestInterceptor = config => {
-  config.headers["Accept-Language"] = window.localStorage.getItem(LANGUAGE_KEY);
-  config.headers["Content-Language"] = window.localStorage.getItem(LANGUAGE_KEY);
+  config.headers["Accept-Language"] = store.getters['lang/getCurrentLanguage'];
+  config.headers["Content-Language"] = store.getters['lang/getCurrentLanguage'];
+  if (store.getters['auth/isAuthenticated']) {
+    config.headers["User-Id"] = store.getters['auth/getUserId']
+    config.headers["User-Token"] = store.getters['auth/getToken']
+  }
 
   return config;
 }

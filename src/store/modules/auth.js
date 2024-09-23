@@ -1,6 +1,5 @@
 import {USER_ID_STORAGE_KEY, USER_TOKEN_STORAGE_KEY} from '@/utils/consts.js';
 import auth from "@/api/user/auth";
-import httpClient from "@/api/httpClient";
 
 
 export default {
@@ -29,9 +28,6 @@ export default {
     login({commit}, {username, password}) {
       return auth.login(username, password).then(response => {
         const token = response.data;
-        httpClient.defaults.headers.common['User-Id'] = username;
-        httpClient.defaults.headers.common['User-token'] = token;
-
         commit('setUserId', username);
         commit('setToken', token);
       });
@@ -44,6 +40,7 @@ export default {
     autologin({commit}) {
       const token = localStorage.getItem(USER_TOKEN_STORAGE_KEY);
       const userId = localStorage.getItem(USER_ID_STORAGE_KEY);
+
       if (token && userId) {
         commit('setToken', token);
         commit('setUserId', userId);
