@@ -20,9 +20,9 @@
           <router-link v-if="!isAuthenticated" :to="{ name: 'login' }" class="btn-top">
             <span>{{ $t('user.login') }}</span><i class="material-icons">login</i>
           </router-link>
-          <router-link v-if="isAuthenticated" @click="logout" :to="{ name: 'login' }" class="btn-top">
+          <a v-if="isAuthenticated" @click.prevent="logout" class="btn-top">
             <span>{{ $t('user.logout') }}</span><i class="material-icons">logout</i>
-          </router-link>
+          </a>
         </div>
       </div>
     </header>
@@ -64,7 +64,7 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch('auth/logout').then(() => {
-        this.$router.push({name: ''});
+        this.$router.push({name: 'login'});
       });
     }
   },
