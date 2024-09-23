@@ -58,7 +58,7 @@ export default {
       } else {
         newProjectList[index] = newProject;
       }
-      this.$store.commit('setProjectList', newProjectList);
+      this.$store.commit('project/setProjectList', newProjectList);
     }
   },
   beforeRouteEnter(to, from, next) {
