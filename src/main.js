@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import VueBreadcrumbs from 'vue-2-breadcrumbs'
 import i18n from './i18n'
-import VTooltip from 'v-tooltip'
+import vTooltip from 'floating-vue'
 import VueInputAutowidth from 'vue-input-autowidth'
 import Enums from "@/utils/enums";
 import VueToast from 'vue-toast-notification';
@@ -16,7 +16,7 @@ import 'vue-toast-notification/dist/theme-default.css';
 
 Vue.use(VueToast)
 Vue.use(VueInputAutowidth)
-Vue.use(VTooltip, {
+Vue.use(vTooltip, {
   themes: {
     'error-tooltip': {
       $extend: 'tooltip',

@@ -46,7 +46,7 @@
 
 <script>
 import LocaleSwitcher from './components/LocaleSwitcher'
-import 'v-tooltip/dist/v-tooltip.css';
+import 'floating-vue/dist/style.css'
 
 require('material-icons');
 
