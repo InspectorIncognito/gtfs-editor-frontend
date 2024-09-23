@@ -39,7 +39,7 @@
       </li>
       <li>
         <span class="lsh">{{ $t('projectDashboard.gtfsBuilder.buildDuration') }}</span>
-        <span class="lst">{{ project.gtfs_building_duration ? project.gtfs_building_duration : '' }}</span>
+        <span class="lst">{{ project.gtfs_building_duration ? project.gtfs_building_duration.split('.')[0] : '' }}</span>
       </li>
       <li>
         <span class="lsh">{{ $t('projectDashboard.gtfsBuilder.errors') }}</span>
