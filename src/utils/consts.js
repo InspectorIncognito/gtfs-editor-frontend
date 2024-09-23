@@ -1,5 +1,9 @@
-const LANGUAGE_KEY = 'language';
+const LANGUAGE_KEY = 'lk';
+const USER_ID_STORAGE_KEY = 'uidk';
+const USER_TOKEN_STORAGE_KEY = 'utsk';
 
 export {
-  LANGUAGE_KEY
+  LANGUAGE_KEY,
+  USER_ID_STORAGE_KEY,
+  USER_TOKEN_STORAGE_KEY,
 }

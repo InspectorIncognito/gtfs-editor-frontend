@@ -6,8 +6,6 @@ const httpClient = axios.create({
   baseURL: process.env.VUE_APP_BASE_URL,
   timeout: 5000, // indicates, 1000ms ie. 1 second
   headers: {
-    'User-Id': '',
-    'User-Token': '',
     "Content-Type": "application/json",
     "Content-Language": window.localStorage.getItem(LANGUAGE_KEY),
     "Accept-Language": window.localStorage.getItem(LANGUAGE_KEY)

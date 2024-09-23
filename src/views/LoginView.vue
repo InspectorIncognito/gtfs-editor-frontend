@@ -3,7 +3,7 @@
     <div class="user-container">
       <div id="login" class="user-form-container">
         <div class="user-header">{{ $t('user.login') }}</div>
-        <form class= "user-form" @submit.prevent="login">
+        <form class="user-form" @submit.prevent="login">
           <div>
             <label for="username">{{ $t('user.username') }}:</label>
             <input type="text" id="username" v-model="username" required>
@@ -27,8 +27,6 @@
 </template>
 
 <script>
-import auth from "../api/user/auth";
-import httpClient from "../api/httpClient";
 
 export default {
   data() {
@@ -40,15 +38,9 @@ export default {
   },
   methods: {
     async login() {
-      auth.login(this.username, this.password).then(response => {
-        const token = response.data;
-
-        httpClient.defaults.headers.common['HTTP_USER_ID'] = this.username;
-        httpClient.defaults.headers.common['HTTP_USER_TOKEN'] = token;
-
+      this.$store.dispatch("auth/login", {username: this.username, password: this.password}).then(() => {
         this.error = '';
-        this.$emit('userLoggedIn', true);
-        this.$router.push({ name: 'myprojects' });
+        this.$router.push({name: 'myprojects'});
       }).catch((error) => {
         this.errors = error.response.data;
       });

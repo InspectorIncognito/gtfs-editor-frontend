@@ -9,7 +9,7 @@
         </div>
         <div class="top-menu">
           <locale-switcher/>
-          <router-link v-if="isUserLoggedIn" :to="{name: 'myprojects'}" class="btn-top">
+          <router-link v-if="isAuthenticated" :to="{name: 'myprojects'}" class="btn-top">
             <span>{{ $t('myProjects.myProjects') }}</span><i class="material-icons">layers</i>
           </router-link>
           <a target="_blank" href="https://www.transapp.cl" class="btn-top"><span>{{ $t('general.website') }}</span><i
@@ -17,20 +17,20 @@
           <a target="_blank" href="https://transapp.cl/#contacto"
              class="btn-top"><span>{{ $t('general.contact') }}</span><i class="material-icons">mail</i></a>
 
-          <router-link v-if="!isUserLoggedIn" :to="{ name: 'login' }" class="btn-top">
+          <router-link v-if="!isAuthenticated" :to="{ name: 'login' }" class="btn-top">
             <span>{{ $t('user.login') }}</span><i class="material-icons">login</i>
           </router-link>
-          <router-link v-if="isUserLoggedIn" @click="logout" :to="{ name: 'login' }" class="btn-top">
+          <router-link v-if="isAuthenticated" @click="logout" :to="{ name: 'login' }" class="btn-top">
             <span>{{ $t('user.logout') }}</span><i class="material-icons">logout</i>
           </router-link>
         </div>
       </div>
     </header>
     <div class="supercontent">
-      <div v-if="isUserLoggedIn" class="container">
+      <div v-if="isAuthenticated" class="container">
         <Breadcrumbs></Breadcrumbs>
       </div>
-      <router-view @userLoggedIn="onUserLoggedIn"></router-view>
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -47,7 +47,6 @@
 <script>
 import LocaleSwitcher from './components/LocaleSwitcher'
 import 'v-tooltip/dist/v-tooltip.css';
-import auth from "./api/user/auth";
 
 require('material-icons');
 
@@ -57,24 +56,20 @@ export default {
   components: {
     LocaleSwitcher
   },
-  data: function () {
-    return {
-      isUserLoggedIn: false
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters['auth/isAuthenticated'];
     }
   },
   methods: {
-    onUserLoggedIn(isLoggedIn) {
-      this.isUserLoggedIn = isLoggedIn;
-    },
     logout() {
-      auth.logout().then(() => {
-        this.isUserLoggedIn = false;
-      }).catch((error) => {
-        console.error('Error logging out:', error);
+      this.$store.dispatch('auth/logout').then(() => {
+        this.$router.push({name: ''});
       });
     }
   },
   mounted() {
+    this.$store.dispatch('auth/autologin');
     this.$store.dispatch('lang/loadLanguage', this.$i18n);
   }
 }
