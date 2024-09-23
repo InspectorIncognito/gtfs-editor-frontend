@@ -1,6 +1,6 @@
 <template>
   <BaseMenu :placement="placement" :options="options" v-on="$listeners"
-            @delete="$store.commit('setShowDeletionModal', true)"></BaseMenu>
+            @delete="$store.commit('project/setShowDeletionModal', true)"></BaseMenu>
 </template>
 
 <script>
@@ -36,7 +36,7 @@ export default {
     }
   },
   mounted() {
-    this.$store.commit('setCurrentProject', this.project);
+    this.$store.commit('project/setCurrentProject', this.project);
   }
 }
 </script>

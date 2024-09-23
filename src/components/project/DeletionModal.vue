@@ -28,10 +28,10 @@ export default {
   ]),
   methods: {
     closeModal() {
-      this.$store.commit('setShowDeletionModal', false);
+      this.$store.commit('project/setShowDeletionModal', false);
     },
     deleteProject() {
-      this.$store.dispatch('deleteCurrentProject');
+      this.$store.dispatch('project/deleteCurrentProject');
     }
   }
 }

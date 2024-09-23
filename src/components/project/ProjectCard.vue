@@ -109,8 +109,8 @@ export default {
   },
   methods: {
     deleteProject() {
-      this.$store.commit('setCurrentProject', this.project);
-      this.$store.commit('setShowDeletionModal', true);
+      this.$store.commit('project/setCurrentProject', this.project);
+      this.$store.commit('project/setShowDeletionModal', true);
     },
     runPeriodicCall() {
       clearInterval(this.interval);
