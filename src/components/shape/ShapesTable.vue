@@ -8,7 +8,7 @@
       </form>
     </div>
     <div class="table-content">
-      <Vuetable ref="vuetable" :fields="fields" :api-url="url" data-path="results" pagination-path="pagination"
+      <Vuetable ref="vuetable" :fields="fields" :api-url="url" :http-options="httpOptions" data-path="results" pagination-path="pagination"
                 @vuetable:pagination-data="onPaginationData" :query-params="makeQueryParams" :row-class="getRowClass">
         <div slot="actions" slot-scope="props" class="grid min center">
           <button class="btn icon btn-focus" @click="$emit('focus-shape', props.rowData);shapeWithFocus=props.rowData"
@@ -56,6 +56,7 @@ import {debounce} from "debounce";
 import Enums from "@/utils/enums";
 import ShapeMenu from "@/components/shape/ShapeMenu";
 import MessageModal from "@/components/modal/MessageModal";
+import {getActiveHeaders} from "@/api/httpClient";
 
 let Vuetable = require('vuetable-2')
 
@@ -70,6 +71,9 @@ export default {
   },
   data() {
     return {
+      httpOptions: {
+        headers: getActiveHeaders()
+      },
       quickSearch: "",
       doSearch: false,
       showMenu: false,

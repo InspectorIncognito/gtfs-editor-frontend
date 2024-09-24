@@ -42,13 +42,20 @@ const responseInterceptor = response => {
   return response;
 }
 
-const requestInterceptor = config => {
-  config.headers["Accept-Language"] = store.getters['lang/getCurrentLanguage'];
-  config.headers["Content-Language"] = store.getters['lang/getCurrentLanguage'];
+export const getActiveHeaders = () => {
+  let headers = {}
+  headers["Accept-Language"] = store.getters['lang/getCurrentLanguage'];
+  headers["Content-Language"] = store.getters['lang/getCurrentLanguage'];
   if (store.getters['auth/isAuthenticated']) {
-    config.headers["User-Id"] = store.getters['auth/getUserId']
-    config.headers["User-Token"] = store.getters['auth/getToken']
+    headers["User-Id"] = store.getters['auth/getUserId']
+    headers["User-Token"] = store.getters['auth/getToken']
   }
+  return headers;
+}
+
+const requestInterceptor = config => {
+  const headers = getActiveHeaders();
+  Object.assign(config.headers, headers);
 
   return config;
 }

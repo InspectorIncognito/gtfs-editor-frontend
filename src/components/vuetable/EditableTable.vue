@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="table-content">
-        <vuetable ref="vuetable" :api-url="url" :multi-sort="true"
+        <vuetable ref="vuetable" :api-url="url" :http-options="httpOptions" :multi-sort="true"
                   :fields="getFieldsWithVisibility()" data-path="results"
                   pagination-path="pagination" @vuetable:pagination-data="onPaginationData"
                   :query-params="makeQueryParams" :row-class="getRowClass" :transform="transformData" :css="css"
@@ -119,6 +119,7 @@ import InputDataModal from "@/components/modal/InputDataModal.vue";
 import {debounce} from "debounce";
 import BaseModal from "@/components/modal/BaseModal";
 import MessageModal from "@/components/modal/MessageModal";
+import {getActiveHeaders} from "@/api/httpClient";
 
 let Vuetable = require('vuetable-2')
 
@@ -146,6 +147,9 @@ export default {
       this.cleanFields.forEach(field => this.setDefaultCreationValue(field, created_data));
     }
     return {
+      httpOptions: {
+        headers: getActiveHeaders()
+      },
       deleteModal: {
         visible: false,
         data: {},

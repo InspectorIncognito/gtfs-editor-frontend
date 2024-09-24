@@ -9,7 +9,7 @@
       <button class="btn icon flat"><i class="material-icons">visibility</i></button>
     </div>
     <div class="table-content">
-      <Vuetable ref="vuetable" :fields="fields" :api-url="url" data-path="results" pagination-path="pagination"
+      <Vuetable ref="vuetable" :fields="fields" :api-url="url" :http-options="httpOptions" data-path="results" pagination-path="pagination"
                 @vuetable:pagination-data="onPaginationData" :query-params="makeQueryParams" :transform="transformData"
                 :row-class="getRowClass">
         <div slot="actions" slot-scope="props" class="grid min center">
@@ -85,6 +85,7 @@ import tripsAPI from '@/api/trips.api';
 import {debounce} from 'debounce';
 import StopTimesMenu from '@/components/stoptimes/StopTimesMenu';
 import MessageModal from '@/components/modal/MessageModal';
+import {getActiveHeaders} from "@/api/httpClient";
 
 let Vuetable = require('vuetable-2')
 
@@ -104,6 +105,9 @@ export default {
   },
   data: function () {
     return {
+      httpOptions: {
+        headers: getActiveHeaders()
+      },
       quickSearch: '',
       doSearch: false,
       showMenu: false,
