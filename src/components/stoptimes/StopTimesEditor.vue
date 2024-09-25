@@ -193,7 +193,7 @@ export default {
           {title: 'Pickup Type', name: 'pickup_type'},
           {title: 'Drop-Off Type', name: 'drop_off_type'},
           {title: 'Continuous Pickup', name: 'continuous_pickup'},
-          {title: 'Continuous Drop-Off', name: 'continuous_dropoff'},
+          {title: 'Continuous Drop-Off', name: 'continuous_drop_off'},
           {title: 'Timepoint', name: 'timepoint'}
         ],
         fields: [],
@@ -530,7 +530,7 @@ export default {
             pickup_type: null,
             drop_off_type: null,
             continuous_pickup: null,
-            continuous_dropoff: null,
+            continuous_drop_off: null,
             shape_dist_traveled: null,
             timepoint: null
           };
