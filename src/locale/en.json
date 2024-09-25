@@ -167,8 +167,11 @@
         "firstParagraph": "Automatically calculate stop times using a speed of ",
         "secondParagraph": "[km/h]. Starting from stop ",
         "thirdParagraph": "to stop ",
+        "fourthParagraph": "With a waiting time in stop of ",
+        "fifthParagraph": "Seconds.",
         "okButtonLabel": "Calculate",
-        "speedFormatError": "Speed value is not a valid number"
+        "speedFormatError": "Speed value is not a valid number",
+        "waitingInStopFormatError": "waiting time in stop value is not a valid number"
       },
       "orderStopsByDistance": {
         "title": "Are you sure you want to automatically order the stops?",

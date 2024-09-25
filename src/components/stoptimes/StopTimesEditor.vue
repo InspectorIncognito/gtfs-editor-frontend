@@ -107,6 +107,11 @@
         {{ $t('stopTimes.editor.calculateStopTimesBasedOnSpeed.thirdParagraph') }}
         <SimpleSelect :field="speedModal.selectField" v-model="speedModal.toStop" :errors="[]">
         </SimpleSelect>
+        {{ $t('stopTimes.editor.calculateStopTimesBasedOnSpeed.fourthParagraph') }}
+        <input v-model="speedModal.waitingInStop"
+               v-tooltip="{ theme: 'error-tooltip', content: speedModal.waitingInStopFormatError, shown: !!speedModal.waitingInStopFormatError }"
+               @focus="speedModal.waitingInStopFormatError=null">
+        {{ $t('stopTimes.editor.calculateStopTimesBasedOnSpeed.fifthParagraph') }}
       </template>
     </MessageModal>
     <MessageModal :show="closeWarning.visible" @ok="exit" @cancel="closeWarning.visible = false"
@@ -223,7 +228,9 @@ export default {
           options: {},
         },
         speed: 60,
-        speedFormatError: null
+        speedFormatError: null,
+        waitingInStop: 0,
+        waitingInStopFormatError: null,
       },
       closeWarning: {
         visible: false
@@ -343,22 +350,22 @@ export default {
         },
         paint: {
           'circle-radius':
-            ['interpolate', ['linear'], ['zoom'],
-              12, ['case',
+              ['interpolate', ['linear'], ['zoom'],
+                12, ['case',
                 ['boolean', ['feature-state', 'hover'], false], 15,
                 ['get', 'selected'], 3,
                 1.5
               ],
-              14, ['case',
+                14, ['case',
                 ['boolean', ['feature-state', 'hover'], false], 15,
                 ['get', 'selected'], 12,
                 4
               ],
-              20, ['case',
+                20, ['case',
                 ['boolean', ['feature-state', 'hover'], false], 15,
                 ['get', 'selected'], 12,
-              10
-            ],],
+                10
+              ],],
           'circle-color': [
             'case',
             ['boolean', ['feature-state', 'hover'], false], "#21B0CF",
@@ -654,21 +661,30 @@ export default {
           this.speedModal.speedFormatError = this.$t('stopTimes.editor.calculateStopTimesBasedOnSpeed.speedFormatError');
           return;
         }
-        let first = this.localTrip.stop_times[this.speedModal.fromStop - 1];
-        if (!first.arrival_time) {
+        let waitingInStop = Number(this.speedModal.waitingInStop);
+        if (this.speedModal.waitingInStop === '' || Number.isNaN(waitingInStop)) {
+          this.speedModal.waitingInStopFormatError = this.$t('stopTimes.editor.calculateStopTimesBasedOnSpeed.waitingInStopFormatError');
           return;
         }
-        let headway = this.timeToSeconds(first.arrival_time);
+        let first = this.localTrip.stop_times[this.speedModal.fromStop - 1];
+        if (!first.arrival_time || !first.departure_time) {
+          // TODO: move to a modal and localize it
+          alert("You need to define a start time and departure time")
+          return;
+        }
+        let previous_st = first;
         this.localTrip.stop_times.forEach(st => {
           if (st.stop_sequence < this.speedModal.fromStop || this.speedModal.toStop < st.stop_sequence) {
             return st;
           }
-          let seconds = (parseFloat(st.shape_dist_traveled) - parseFloat(first.shape_dist_traveled)) / speed * 3600;
-          let formatted_time = this.secondsToTime(seconds + headway);
+          let seconds = (parseFloat(st.shape_dist_traveled) - parseFloat(previous_st.shape_dist_traveled)) / speed * 3600;
+          let arrivalTime = this.timeToSeconds(previous_st.departure_time) + seconds;
+          let formattedTime = this.secondsToTime(arrivalTime);
           if (st.stop_sequence > first.stop_sequence) {
-            st.arrival_time = formatted_time;
+            st.arrival_time = formattedTime;
           }
-          st.departure_time = formatted_time;
+          st.departure_time = this.secondsToTime(arrivalTime + waitingInStop);
+          previous_st = st;
           return st;
         });
       }

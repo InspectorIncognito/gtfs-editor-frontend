@@ -167,8 +167,11 @@
         "firstParagraph": "Calcular automáticamente los tiempos usando una rapidez de ",
         "secondParagraph": "[km/h]. Comenzando en la parada ",
         "thirdParagraph": " hasta la parada ",
+        "fourthParagraph": "Con un tiempo de espera en parada de ",
+        "fifthParagraph": "Segundos.",
         "okButtonLabel": "Calcular",
-        "speedFormatError": "El valor de velocidad no es válido"
+        "speedFormatError": "El valor de velocidad no es válido",
+        "waitingInStopFormatError": "El valor de tiempo de espera en parada no es válido"
       },
       "orderStopsByDistance": {
         "title": "¿Estás segur@ que quieres ordenar las paradas por su distancia?",
