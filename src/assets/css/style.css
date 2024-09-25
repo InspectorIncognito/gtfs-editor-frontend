@@ -922,15 +922,6 @@ a.disabled {color: var(--gris-medio); cursor: default;}
     border: 2px solid #99c799;
 }
 
-/* ============  USER BAR EN APP VUE Y CAMBIO EN BREADCRUMS   ============== */
-
-.supercontent .container{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-}
-
 /* ============   RECOVER PASSWORD ============== */
 
 #recover-password .user-form{
