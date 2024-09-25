@@ -8,8 +8,9 @@
       </form>
     </div>
     <div class="table-content">
-      <Vuetable ref="vuetable" :fields="fields" :api-url="url" :http-options="httpOptions" data-path="results" pagination-path="pagination"
-                @vuetable:pagination-data="onPaginationData" :query-params="makeQueryParams" :row-class="getRowClass">
+      <Vuetable ref="vuetable" :fields="fields" :api-url="url" :http-options="httpOptions" data-path="results"
+                pagination-path="pagination" @vuetable:pagination-data="onPaginationData"
+                :query-params="makeQueryParams" :row-class="getRowClass">
         <div slot="actions" slot-scope="props" class="grid min center">
           <button class="btn icon btn-focus" @click="$emit('focus-shape', props.rowData);shapeWithFocus=props.rowData"
                   alt="Display shape.">
@@ -32,7 +33,8 @@
     <div class="table-footer">
       <VuetablePagination ref="pagination" @vuetable-pagination:change-page="onChangePage">
       </VuetablePagination>
-      <VuetablePaginationDropDown ref="paginationDropDown" @vuetable-pagination:change-page="onChangePage">
+      <VuetablePaginationDropDown ref="paginationDropDown" :pageText="$t('vuetable.page')"
+                                  @vuetable-pagination:change-page="onChangePage">
       </VuetablePaginationDropDown>
     </div>
     <MessageModal :show="deleteModal.visible" :showCancelButton="true" :okButtonLabel="$t('general.delete')"

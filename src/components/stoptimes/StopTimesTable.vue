@@ -9,9 +9,9 @@
       <button class="btn icon flat"><i class="material-icons">visibility</i></button>
     </div>
     <div class="table-content">
-      <Vuetable ref="vuetable" :fields="fields" :api-url="url" :http-options="httpOptions" data-path="results" pagination-path="pagination"
-                @vuetable:pagination-data="onPaginationData" :query-params="makeQueryParams" :transform="transformData"
-                :row-class="getRowClass">
+      <Vuetable ref="vuetable" :fields="fields" :api-url="url" :http-options="httpOptions" data-path="results"
+                pagination-path="pagination" @vuetable:pagination-data="onPaginationData"
+                :query-params="makeQueryParams" :transform="transformData" :row-class="getRowClass">
         <div slot="actions" slot-scope="props" class="grid min center">
           <button class="btn icon btn-focus" @click="tripWithFocus=props.rowData;$emit('focus-st', props.rowData)"
                   alt="Display stop_times.">
@@ -36,7 +36,8 @@
     <div class="table-footer">
       <VuetablePagination ref="pagination" @vuetable-pagination:change-page="onChangePage">
       </VuetablePagination>
-      <VuetablePaginationDropDown ref="paginationDropDown" @vuetable-pagination:change-page="onChangePage">
+      <VuetablePaginationDropDown ref="paginationDropDown" :pageText="$t('vuetable.page')"
+                                  @vuetable-pagination:change-page="onChangePage">
       </VuetablePaginationDropDown>
     </div>
     <MessageModal :show="deleteModal.visible" @ok="deleteST" @cancel="deleteModal.visible = false"
