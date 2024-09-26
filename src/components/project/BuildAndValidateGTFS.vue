@@ -34,12 +34,14 @@
       <li>
         <span class="lsh">{{ $t('projectDashboard.gtfsBuilder.buildStatus') }}</span>
         <span class="lst">{{
-            project.gtfs_building_and_validation_status ? project.gtfs_building_and_validation_status : ''
+            project.gtfs_building_and_validation_status ? $t(`projectDashboard.gtfsBuilder.executionStatus.${project.gtfs_building_and_validation_status}`) : ''
           }}</span>
       </li>
       <li>
         <span class="lsh">{{ $t('projectDashboard.gtfsBuilder.buildDuration') }}</span>
-        <span class="lst">{{ project.gtfs_building_duration ? project.gtfs_building_duration.split('.')[0] : '' }}</span>
+        <span class="lst">{{
+            project.gtfs_building_duration ? project.gtfs_building_duration.split('.')[0] : ''
+          }}</span>
       </li>
       <li>
         <span class="lsh">{{ $t('projectDashboard.gtfsBuilder.errors') }}</span>
@@ -133,9 +135,12 @@ export default {
       this.interval = setInterval(() => {
         console.log('updated gtfs validation status...');
         projectsAPI.getProjectDetail(this.project.project_id).then(response => {
+          console.log(response.data.gtfs_building_and_validation_status)
+          if (this.project.gtfs_building_and_validation_status !== response.data.gtfs_building_and_validation_status) {
+            this.$emit('update-project', response.data);
+          }
           if ([this.status.FINISHED, this.status.ERROR, this.status.CANCELED].indexOf(response.data.gtfs_building_and_validation_status) > -1) {
             clearInterval(this.interval);
-            this.$emit('update-project', response.data);
           }
         });
       }, 2000);

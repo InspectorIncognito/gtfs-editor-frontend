@@ -78,7 +78,15 @@
       "download": "Descargar GTFS",
       "executeButtonLabel": "Ejecutar",
       "cancelButtonLabel": "Cancelar",
-      "executing": "Ejecutando..."
+      "executing": "Ejecutando...",
+      "executionStatus": {
+        "queued": "En cola",
+        "building":  "Construyendo GTFS...",
+        "validating": "Validando GTFS...",
+        "finished": "Finalizado",
+        "error": "Finalizado con errores",
+        "canceled": "Cancelado"
+      }
     },
     "gtfsRequiredData": "GTFS datos requeridos",
     "gtfsOptionalData": "GTFS datos opcionales",
