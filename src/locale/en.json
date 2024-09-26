@@ -181,6 +181,20 @@
       "closeWarning": {
         "title": "Confirm discard changes",
         "body": "Are you sure you want to discard all changes?"
+      },
+      "errors": {
+        "editWithoutShape": {
+          "title": "Error",
+          "body": "Editing a StopTimes without a shape is not supported."
+        },
+        "stopsWithoutDistTraveled": {
+          "title": "Error",
+          "body": "Some stops have empty values in the 'shape distance traveled' field. Please correct these before applying this function to the specified stop range.<br><br>You can use the 'reorder stops using shape' action to assign the distance values automatically."
+        },
+        "needsDepartureValue": {
+          "title": "Error",
+          "body": "You need to set both an arrival time and a departure time at the first stop to calculate the following stop times."
+        }
       }
     },
     "table": {

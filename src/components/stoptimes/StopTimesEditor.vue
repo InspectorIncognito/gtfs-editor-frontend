@@ -123,6 +123,15 @@
         <p>{{ $t('stopTimes.editor.closeWarning.body') }}</p>
       </template>
     </MessageModal>
+    <MessageModal :show="errorModal.visible" @ok="errorModal.visible=false" :showCancelButton="false"
+                  @close="errorModal.visible = false" :type="Enums.MessageModalType.ERROR">
+      <template v-slot:m-title>
+        <h2>{{ errorModal.title }}</h2>
+      </template>
+      <template v-slot:m-content>
+        <p v-html="errorModal.body"></p>
+      </template>
+    </MessageModal>
   </div>
 </template>
 
@@ -234,6 +243,11 @@ export default {
       },
       closeWarning: {
         visible: false
+      },
+      errorModal: {
+        visible: false,
+        title: null,
+        body: null
       }
     };
   },
@@ -641,7 +655,9 @@ export default {
           this.map.getSource(this.shape.sourceName).setData(geojson);
         }).catch(err => console.log(err));
       } else {
-        window.alert('Warning: editing a StopTimes without a shape is not supported');
+        this.errorModal.title = this.$t('stopTimes.editor.errors.editWithoutShape.title');
+        this.errorModal.body = this.$t('stopTimes.editor.errors.editWithoutShape.body');
+        this.errorModal.visible = true;
       }
     },
     openSpeedModal() {
@@ -666,10 +682,21 @@ export default {
           this.speedModal.waitingInStopFormatError = this.$t('stopTimes.editor.calculateStopTimesBasedOnSpeed.waitingInStopFormatError');
           return;
         }
+        for (const stObj of this.localTrip.stop_times) {
+          const shapeDist = parseFloat(stObj.shape_dist_traveled);
+          if (isNaN(shapeDist)) {
+            this.errorModal.title = this.$t('stopTimes.editor.errors.stopsWithoutDistTraveled.title');
+            this.errorModal.body = this.$t('stopTimes.editor.errors.stopsWithoutDistTraveled.body');
+            this.errorModal.visible = true;
+            return;
+          }
+        }
+
         let first = this.localTrip.stop_times[this.speedModal.fromStop - 1];
         if (!first.arrival_time || !first.departure_time) {
-          // TODO: move to a modal and localize it
-          alert("You need to define a start time and departure time")
+          this.errorModal.title = this.$t('stopTimes.editor.errors.needsDepartureValue.title');
+          this.errorModal.body = this.$t('stopTimes.editor.errors.needsDepartureValue.body');
+          this.errorModal.visible = true;
           return;
         }
         let previous_st = first;

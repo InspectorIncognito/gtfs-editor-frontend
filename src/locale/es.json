@@ -181,6 +181,20 @@
       "closeWarning": {
         "title": "Descartar cambios",
         "body": "¿Estás segur@ que quieres descartar todos los cambios?"
+      },
+      "errors": {
+        "editWithoutShape": {
+          "title": "Error",
+          "body": "Editar StopTimes sin un trazado no está soportado."
+        },
+        "stopsWithoutDistTraveled": {
+          "title": "Error",
+          "body": "Algunas paradas tienen valores vacíos en el campo 'shape distance traveled'. Corrige estos valores antes de aplicar esta función al rango de paradas especificado.<br><br>Puedes usar la acción 'reordenar paradas usando la ruta' para asignar automáticamente los valores de distancia."
+        },
+        "needsDepartureValue": {
+          "title": "Error",
+          "body": "Debes establecer tanto la hora de llegada como la hora de salida en la primera parada para calcular los tiempos de las siguientes paradas de la secuencia."
+        }
       }
     },
     "table": {
