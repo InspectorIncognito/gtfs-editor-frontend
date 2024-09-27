@@ -7,7 +7,7 @@
             <input v-model="quickSearch" type="search" :placeholder="$t('vuetable.quickSearch')" v-on:input="doSearch">
           </div>
         </form>
-        <div class="table-total-rows"><span>{{ totalDataInTable }} {{ $t('vuetable.rows') }}</span></div>
+        <div class="table-total-rows"><span>{{ totalDataInTable }} {{ $tc('vuetable.rows', totalDataInTable) }}</span></div>
         <div class="table-option-buttons">
           <form @submit.prevent="downloadCSVFile">
             <button class="btn flat" type="submit"> {{ $t('vuetable.downloadCSV') }}</button>

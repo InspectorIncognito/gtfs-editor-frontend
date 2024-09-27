@@ -102,7 +102,7 @@
   "vuetable": {
     "page": "Page",
     "quickSearch": "Quick search",
-    "rows": "Rows",
+    "rows": "Row|Rows",
     "downloadCSV": "Download CSV",
     "uploadCSV": "Upload CSV",
     "uploadCSVParagraph": "This action will perform three modifications:<br><br> 1) Records that exist both on the platform and in the file will be updated.<br>2) Records that exist in the file but not on the platform will be added.<br>3) Records that exist on the platform but not in the file will be deleted.<br><br>This action is irreversible.",

@@ -102,7 +102,7 @@
   "vuetable": {
     "page": "Página",
     "quickSearch": "Buscar",
-    "rows": "Filas",
+    "rows": "Fila|Filas",
     "downloadCSV": "Descargar CSV",
     "uploadCSV": "Subir CSV",
     "uploadCSVParagraph": "Esta acción realizará tres modificaciones:<br><br> 1) Registros que existen en la plataforma y en el archivo, serán actualizados.<br>2) Registros que existen en el archivo y no en la plataforma, serán agregados.<br>3) Registros que existen en la plataforma pero no en el archivo, serán eliminados.<br><br>Esta acción es irreversible.",
