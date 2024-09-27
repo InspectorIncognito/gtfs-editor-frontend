@@ -17,7 +17,7 @@
       <ul class="data-body" v-if="state===DataCardEnum.ENABLED">
         <li>
           <span class="big">{{ quantity }}</span>
-          <span>{{ $t('dataCard.records') }}</span>
+          <span>{{ $tc('dataCard.records', quantity) }}</span>
         </li>
       </ul>
       <div class="data-footer">

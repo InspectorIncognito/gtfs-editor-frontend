@@ -53,7 +53,7 @@
     "delete": "Delete"
   },
   "dataCard": {
-    "records": "Records",
+    "records": "Record|Records",
     "add": "Add"
   },
   "projectDashboard": {

@@ -53,7 +53,7 @@
     "delete": "Eliminar"
   },
   "dataCard": {
-    "records": "Registros",
+    "records": "Registro|Registros",
     "add": "Agregar"
   },
   "projectDashboard": {
