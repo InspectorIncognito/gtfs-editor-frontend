@@ -3,7 +3,7 @@
     <TableHeader :title="tableTitle" :infoURL="infoURL"></TableHeader>
     <section class="content">
       <EditableTable :fields="fields" :url="url" :updateMethod="update" :deleteMethod="remove" :createMethod="create"
-                     :downloadURL="downloadURL" :uploadCSV="uploadCSV" :searchable="true">
+                     :downloadCSV="downloadCSV" :uploadCSV="uploadCSV" :searchable="true">
       </EditableTable>
     </section>
   </div>
@@ -26,7 +26,6 @@ export default {
       tableTitle: 'Transfers',
       infoURL: "https://developers.google.com/transit/gtfs/reference#transferstxt",
       url: transfersAPI.transfersAPI.getFullBaseURL(this.$route.params.projectId),
-      downloadURL: transfersAPI.transfersAPI.getDownloadURL(this.$route.params.projectId),
       fields: [
         {
           name: 'actions',
@@ -88,6 +87,9 @@ export default {
     },
     remove(data) {
       return transfersAPI.transfersAPI.remove(this.$route.params.projectId, data);
+    },
+    downloadCSV() {
+      return transfersAPI.transfersAPI.downloadCSV(this.$route.params.projectId);
     },
     uploadCSV(file) {
       return transfersAPI.transfersAPI.uploadCSV(this.$route.params.projectId, file);

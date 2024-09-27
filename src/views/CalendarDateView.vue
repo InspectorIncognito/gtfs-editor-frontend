@@ -3,7 +3,7 @@
     <TableHeader :title="tableTitle" :infoURL="infoURL"></TableHeader>
     <section class="content">
       <EditableTable :fields="fields" :url="url" :updateMethod="update" :deleteMethod="remove" :createMethod="create"
-                     :downloadURL="downloadURL" :uploadCSV="uploadCSV" :searchable="true">
+                     :downloadCSV="downloadCSV" :uploadCSV="uploadCSV" :searchable="true">
       </EditableTable>
     </section>
   </div>
@@ -24,7 +24,6 @@ export default {
     return {
       tableTitle: 'Calendar dates',
       infoURL: "https://developers.google.com/transit/gtfs/reference#calendar_datestxt",
-      downloadURL: calendarDatesAPI.calendarDatesAPI.getDownloadURL(this.$route.params.projectId),
       url: calendarDatesAPI.calendarDatesAPI.getFullBaseURL(this.$route.params.projectId),
       fields: [
         {
@@ -68,6 +67,9 @@ export default {
     },
     remove(data) {
       return calendarDatesAPI.calendarDatesAPI.remove(this.$route.params.projectId, data);
+    },
+    downloadCSV() {
+      return calendarDatesAPI.calendarDatesAPI.downloadCSV(this.$route.params.projectId);
     },
     uploadCSV(file) {
       return calendarDatesAPI.calendarDatesAPI.uploadCSV(this.$route.params.projectId, file);

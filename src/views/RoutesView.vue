@@ -3,7 +3,7 @@
     <TableHeader :title="tableTitle" :infoURL="infoURL"></TableHeader>
     <section class="content">
       <EditableTable :fields="fields" :url="url" :updateMethod="update" :deleteMethod="remove" :createMethod="create"
-                     :downloadURL="downloadURL" :uploadCSV="uploadCSV" :searchable="true">
+                     :downloadCSV="downloadCSV" :uploadCSV="uploadCSV" :searchable="true">
         <template slot="additional-actions" slot-scope="props">
           <button class="btn icon flat" @click="goToRoute(props)" alt="Go to trips">
             <span class="material-icons">map</span>
@@ -31,7 +31,6 @@ export default {
       tableTitle: 'Routes',
       infoURL: "https://developers.google.com/transit/gtfs/reference#routestxt",
       url: routesAPI.routesAPI.getFullBaseURL(this.$route.params.projectId),
-      downloadURL: routesAPI.routesAPI.getDownloadURL(this.$route.params.projectId),
       fields: [
         {
           name: 'actions',
@@ -133,6 +132,9 @@ export default {
     },
     remove(data) {
       return routesAPI.routesAPI.remove(this.$route.params.projectId, data);
+    },
+    downloadCSV() {
+      return routesAPI.routesAPI.downloadCSV(this.$route.params.projectId);
     },
     uploadCSV(file) {
       return routesAPI.routesAPI.uploadCSV(this.$route.params.projectId, file);

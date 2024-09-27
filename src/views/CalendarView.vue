@@ -3,7 +3,7 @@
     <TableHeader :title="tableTitle" :infoURL="infoURL"></TableHeader>
     <section class="content">
       <EditableTable :fields="fields" :url="url" :updateMethod="updateCalendar" :deleteMethod="removeCalendar"
-                     :createMethod="createCalendar" :downloadURL="downloadURL" :uploadCSV="uploadCSV">
+                     :createMethod="createCalendar" :downloadCSV="downloadCSV" :uploadCSV="uploadCSV">
         <template slot="information">
           Calendars are amazing!!!
         </template>
@@ -27,7 +27,6 @@ export default {
     return {
       tableTitle: 'Calendar',
       infoURL: "https://developers.google.com/transit/gtfs/reference#calendartxt",
-      downloadURL: calendarAPI.calendarAPI.getDownloadURL(this.$route.params.projectId),
       url: calendarAPI.calendarAPI.getFullBaseURL(this.$route.params.projectId),
       days: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],
       fields: [
@@ -65,7 +64,7 @@ export default {
           type: Enums.InputType.CHECKBOX,
           required: true,
           inputConfig: {
-            transformLabel: (title) => title.toLowerCase().substring(0,3)
+            transformLabel: (title) => title.toLowerCase().substring(0, 3)
           }
         },
         {
@@ -74,7 +73,7 @@ export default {
           type: Enums.InputType.CHECKBOX,
           required: true,
           inputConfig: {
-            transformLabel: (title) => title.toLowerCase().substring(0,3)
+            transformLabel: (title) => title.toLowerCase().substring(0, 3)
           }
         },
         {
@@ -83,7 +82,7 @@ export default {
           type: Enums.InputType.CHECKBOX,
           required: true,
           inputConfig: {
-            transformLabel: (title) => title.toLowerCase().substring(0,3)
+            transformLabel: (title) => title.toLowerCase().substring(0, 3)
           }
         },
         {
@@ -92,7 +91,7 @@ export default {
           type: Enums.InputType.CHECKBOX,
           required: true,
           inputConfig: {
-            transformLabel: (title) => title.toLowerCase().substring(0,3)
+            transformLabel: (title) => title.toLowerCase().substring(0, 3)
           }
         },
         {
@@ -101,7 +100,7 @@ export default {
           type: Enums.InputType.CHECKBOX,
           required: true,
           inputConfig: {
-            transformLabel: (title) => title.toLowerCase().substring(0,3)
+            transformLabel: (title) => title.toLowerCase().substring(0, 3)
           }
         },
         {
@@ -110,7 +109,7 @@ export default {
           type: Enums.InputType.CHECKBOX,
           required: true,
           inputConfig: {
-            transformLabel: (title) => title.toLowerCase().substring(0,3)
+            transformLabel: (title) => title.toLowerCase().substring(0, 3)
           }
         },
         {
@@ -119,7 +118,7 @@ export default {
           type: Enums.InputType.CHECKBOX,
           required: true,
           inputConfig: {
-            transformLabel: (title) => title.toLowerCase().substring(0,3)
+            transformLabel: (title) => title.toLowerCase().substring(0, 3)
           }
         },
       ],
@@ -134,6 +133,9 @@ export default {
     },
     removeCalendar(data) {
       return calendarAPI.calendarAPI.remove(this.$route.params.projectId, data);
+    },
+    downloadCSV() {
+      return calendarAPI.calendarAPI.downloadCSV(this.$route.params.projectId);
     },
     uploadCSV(file) {
       return calendarAPI.calendarAPI.uploadCSV(this.$route.params.projectId, file);

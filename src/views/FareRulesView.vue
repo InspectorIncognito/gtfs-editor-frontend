@@ -3,7 +3,7 @@
     <TableHeader :title="tableTitle" :infoURL="infoURL"></TableHeader>
     <section class="content">
       <EditableTable :fields="fields" :url="url" :updateMethod="update" :deleteMethod="remove" :createMethod="create"
-                     :downloadURL="downloadURL" :uploadCSV="uploadCSV" :searchable="true">
+                     :downloadCSV="downloadCSV" :uploadCSV="uploadCSV" :searchable="true">
       </EditableTable>
     </section>
   </div>
@@ -26,7 +26,6 @@ export default {
     return {
       tableTitle: 'Fare rules',
       infoURL: "https://developers.google.com/transit/gtfs/reference#fare_rulestxt",
-      downloadURL: fareRulesAPI.fareRulesAPI.getDownloadURL(this.$route.params.projectId),
       url: fareRulesAPI.fareRulesAPI.getFullBaseURL(this.$route.params.projectId),
       fields: [
         {
@@ -85,6 +84,9 @@ export default {
     },
     remove(data) {
       return fareRulesAPI.fareRulesAPI.remove(this.$route.params.projectId, data);
+    },
+    downloadCSV() {
+      return fareRulesAPI.fareRulesAPI.downloadCSV(this.$route.params.projectId);
     },
     uploadCSV(file) {
       return fareRulesAPI.fareRulesAPI.uploadCSV(this.$route.params.projectId, file);

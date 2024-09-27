@@ -3,7 +3,7 @@
     <TableHeader :title="tableTitle" :infoURL="infoURL"></TableHeader>
     <section class="content">
       <EditableTable :fields="fields" :url="url" :updateMethod="updateAgency" :deleteMethod="removeAgency"
-                     :createMethod="createAgency" :downloadURL="downloadURL" :uploadCSV="uploadCSV">
+                     :createMethod="createAgency" :downloadCSV="downloadCSV" :uploadCSV="uploadCSV">
       </EditableTable>
     </section>
   </div>
@@ -25,7 +25,6 @@ export default {
     return {
       tableTitle: 'Agency',
       infoURL: "https://developers.google.com/transit/gtfs/reference#agencytxt",
-      downloadURL: agenciesAPI.agenciesAPI.getDownloadURL(this.$route.params.projectId),
       url: agenciesAPI.agenciesAPI.getFullBaseURL(this.$route.params.projectId),
       fields: [
         {
@@ -97,6 +96,9 @@ export default {
     },
     removeAgency(data) {
       return agenciesAPI.agenciesAPI.remove(this.$route.params.projectId, data);
+    },
+    downloadCSV() {
+      return agenciesAPI.agenciesAPI.downloadCSV(this.$route.params.projectId);
     },
     uploadCSV(file) {
       return agenciesAPI.agenciesAPI.uploadCSV(this.$route.params.projectId, file);

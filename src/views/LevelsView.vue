@@ -3,7 +3,7 @@
     <TableHeader :title="tableTitle" :infoURL="infoURL"></TableHeader>
     <section class="content">
       <EditableTable :fields="fields" :url="url" :updateMethod="update" :deleteMethod="remove" :createMethod="create"
-                     :downloadURL="downloadURL" :uploadCSV="uploadCSV" :searchable="true">
+                     :downloadCSV="downloadCSV" :uploadCSV="uploadCSV" :searchable="true">
       </EditableTable>
     </section>
   </div>
@@ -24,7 +24,6 @@ export default {
     return {
       tableTitle: 'Levels',
       infoURL: "https://developers.google.com/transit/gtfs/reference#levelstxt",
-      downloadURL: levelsAPI.levelsAPI.getDownloadURL(this.$route.params.projectId),
       url: levelsAPI.levelsAPI.getFullBaseURL(this.$route.params.projectId),
       fields: [
         {
@@ -65,6 +64,9 @@ export default {
     },
     remove(data) {
       return levelsAPI.levelsAPI.remove(this.$route.params.projectId, data);
+    },
+    downloadCSV() {
+      return levelsAPI.levelsAPI.downloadCSV(this.$route.params.projectId);
     },
     uploadCSV(file) {
       return levelsAPI.levelsAPI.uploadCSV(this.$route.params.projectId, file);

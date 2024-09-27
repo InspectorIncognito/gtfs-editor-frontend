@@ -20,7 +20,7 @@
     </div>
     <div v-show="activeTab===tabType.TABLE" class="table-container container">
       <EditableTable ref='table' :fields="fields" :url="url" :updateMethod="updateStop" :deleteMethod="removeStop"
-                     :createMethod="createStop" :downloadURL="downloadURL" :uploadCSV="uploadCSV" :searchable="true"
+                     :createMethod="createStop" :downloadCSV="downloadCSV" :uploadCSV="uploadCSV" :searchable="true"
                      @update="onUpdate">
         <template slot="additional-actions" slot-scope="props">
           <button class="btn icon" @click="focusStop(props)" alt="Focus Stop on interactive map.">
@@ -53,7 +53,6 @@ export default {
       tableTitle: 'Stops',
       infoURL: "https://developers.google.com/transit/gtfs/reference#stopstxt",
       url: stopsAPI.stopsAPI.getFullBaseURL(this.$route.params.projectId),
-      downloadURL: stopsAPI.stopsAPI.getDownloadURL(this.$route.params.projectId),
       activeTab: 'map',
       tabType: {
         MAP: 'map',
@@ -94,6 +93,9 @@ export default {
     },
     removeStop(data) {
       return stopsAPI.stopsAPI.remove(this.$route.params.projectId, data);
+    },
+    downloadCSV() {
+      return stopsAPI.stopsAPI.downloadCSV(this.$route.params.projectId);
     },
     uploadCSV(file) {
       return stopsAPI.stopsAPI.uploadCSV(this.$route.params.projectId, file);

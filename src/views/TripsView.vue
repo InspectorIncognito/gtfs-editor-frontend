@@ -3,7 +3,7 @@
     <TableHeader :title="tableTitle" :infoURL="infoURL"></TableHeader>
     <section class="content">
       <EditableTable :fields="fields" :url="url" :updateMethod="updateTrip" :deleteMethod="removeTrip"
-                     :createMethod="createTrip" :downloadURL="downloadURL" :uploadCSV="uploadCSV" :searchable="true">
+                     :createMethod="createTrip" :downloadCSV="downloadCSV" :uploadCSV="uploadCSV" :searchable="true">
         <template slot="additional-buttons">
           <button class="btn btn-outline-secondary" @click="$router.push({ name: 'Shapes', params: $router.params })">
             Edit Shapes
@@ -33,7 +33,6 @@ export default {
       tableTitle: 'Trips',
       infoURL: "https://developers.google.com/transit/gtfs/reference#tripstxt",
       url: tripsAPI.tripsAPI.getFullBaseURL(this.$route.params.projectId),
-      downloadURL: tripsAPI.tripsAPI.getDownloadURL(this.$route.params.projectId),
       fields: [
         {
           name: 'actions',
@@ -138,6 +137,9 @@ export default {
     },
     removeTrip(data) {
       return tripsAPI.tripsAPI.remove(this.$route.params.projectId, data);
+    },
+    downloadCSV() {
+      return tripsAPI.tripsAPI.downloadCSV(this.$route.params.projectId);
     },
     uploadCSV(file) {
       return tripsAPI.tripsAPI.uploadCSV(this.$route.params.projectId, file);
