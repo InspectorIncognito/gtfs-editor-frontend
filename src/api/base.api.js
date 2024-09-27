@@ -41,8 +41,9 @@ const BaseAPI = class {
     remove(projectId, data){
         return httpClient.delete(this.getDetailURL(projectId, data.id));
     }
-    getDownloadURL(projectId){
-        return this.getFullDetailURL(projectId, 'download')
+    downloadCSV(projectId){
+        const url =  this.getFullDetailURL(projectId, 'download');
+        return httpClient.get(url);
     }
     uploadCSV (projectId, file) {
         return httpClient.put(this.getDetailURL(projectId, 'upload'), file, {

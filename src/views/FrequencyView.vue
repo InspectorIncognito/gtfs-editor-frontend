@@ -3,7 +3,7 @@
     <TableHeader :title="tableTitle" :infoURL="infoURL"></TableHeader>
     <section class="content">
       <EditableTable :fields="fields" :url="url" :updateMethod="update" :deleteMethod="remove" :createMethod="create"
-                     :downloadURL="downloadURL" :uploadCSV="uploadCSV" :searchable="true">
+                     :downloadCSV="downloadCSV" :uploadCSV="uploadCSV" :searchable="true">
       </EditableTable>
     </section>
   </div>
@@ -25,7 +25,6 @@ export default {
     return {
       tableTitle: 'Frequencies',
       infoURL: "https://developers.google.com/transit/gtfs/reference#frequenciestxt",
-      downloadURL: frequenciesAPI.frequenciesAPI.getDownloadURL(this.$route.params.projectId),
       url: frequenciesAPI.frequenciesAPI.getFullBaseURL(this.$route.params.projectId),
       fields: [
         {
@@ -90,6 +89,9 @@ export default {
     },
     uploadCSV(file) {
       return frequenciesAPI.frequenciesAPI.uploadCSV(this.$route.params.projectId, file);
+    },
+    downloadCSV() {
+      return frequenciesAPI.frequenciesAPI.downloadCSV(this.$route.params.projectId);
     },
     log(out) {
       console.log(out);

@@ -9,10 +9,8 @@
         </form>
         <div class="table-total-rows"><span>{{ totalDataInTable }} {{ $t('vuetable.rows') }}</span></div>
         <div class="table-option-buttons">
-          <form method="get" :action="downloadURL">
-            <button class="btn flat" type="submit">
-              {{ $t('vuetable.downloadCSV') }}
-            </button>
+          <form @submit.prevent="downloadCSVFile">
+            <button class="btn flat" type="submit"> {{ $t('vuetable.downloadCSV') }}</button>
           </form>
           <button class="btn flat" @click="uploadModal.visible=true;uploadModal.error='';">
             {{ $t('vuetable.uploadCSV') }}
@@ -213,8 +211,8 @@ export default {
       type: Function,
       required: true,
     },
-    downloadURL: {
-      type: String,
+    downloadCSV: {
+      type: Function,
       required: true,
     },
     searchable: {
@@ -356,6 +354,22 @@ export default {
       }).catch(error => {
         console.log(error.response);
         this.uploadModal.error = error.response.data;
+      });
+    },
+    downloadCSVFile() {
+      this.downloadCSV().then(response => {
+        let blob = new Blob([response.data], {
+          type: response.headers['content-type']
+        });
+        let filename = response.headers['content-disposition'].split('filename=')[1].replace(/['"]/g, '');
+        let url = window.URL.createObjectURL(blob);
+        let link = document.createElement('a');
+        link.href = url;
+        link.download = filename;
+        link.click();
+        window.URL.revokeObjectURL(url);
+      }).catch(error => {
+        alert(error.response.data);
       });
     },
     getSortParam(sortOrder) {
