@@ -72,10 +72,10 @@
     <BaseModal :show="uploadModal.visible" @close="uploadModal.visible = false">
       <template v-slot:m-content>
         <div class="m-header">
-          <h2>Upload CSV</h2>
+          <h2>{{ $t('vuetable.uploadCSV') }}</h2>
         </div>
         <div class="m-content">
-          <span>Upload CSV file.</span><br/>
+          <span v-html="$t('vuetable.uploadCSVParagraph')"></span><br/>
           <span v-if="uploadModal.error" class="error">{{ uploadModal.error }}</span>
           <FileReader @load="uploadCSVFile($event)"></FileReader>
         </div>
@@ -89,7 +89,7 @@
                   @close="deleteModal.visible = false" :showCancelButton="true" :okButtonLabel="$t('general.delete')"
                   :type="Enums.MessageModalType.WARNING">
       <template v-slot:m-title>
-        <h2>Are you sure you want to delete this row?</h2>
+        <h2>{{ $t('vuetable.deleteRowConfirmationTitle') }}</h2>
       </template>
       <template v-slot:m-content>
         <span>

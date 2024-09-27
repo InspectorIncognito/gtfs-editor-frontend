@@ -105,11 +105,13 @@
     "rows": "Filas",
     "downloadCSV": "Descargar CSV",
     "uploadCSV": "Subir CSV",
+    "uploadCSVParagraph": "Esta acción realizará tres modificaciones:<br><br> 1) Registros que existen en la plataforma y en el archivo, serán actualizados.<br>2) Registros que existen en el archivo y no en la plataforma, serán agregados.<br>3) Registros que existen en la plataforma pero no en el archivo, serán eliminados.<br><br>Esta acción es irreversible.",
     "save": "Guardar",
     "addRow": "Agregar registro",
     "actions": "Acciones",
     "settings": "Configuración",
-    "newEntityTitle": "Nueva entidad"
+    "newEntityTitle": "Nueva entidad",
+    "deleteRowConfirmationTitle": "¿Est@s segur@ de eliminar el registro?"
   },
   "shape": {
     "menu": {

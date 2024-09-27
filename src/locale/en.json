@@ -105,11 +105,13 @@
     "rows": "Rows",
     "downloadCSV": "Download CSV",
     "uploadCSV": "Upload CSV",
+    "uploadCSVParagraph": "This action will perform three modifications:<br><br> 1) Records that exist both on the platform and in the file will be updated.<br>2) Records that exist in the file but not on the platform will be added.<br>3) Records that exist on the platform but not in the file will be deleted.<br><br>This action is irreversible.",
     "save": "Save",
     "addRow": "Add row",
     "actions": "Actions",
     "settings": "Settings",
-    "newEntityTitle": "New entity"
+    "newEntityTitle": "New entity",
+    "deleteRowConfirmationTitle": "Are you sure you want to delete this row?"
   },
   "shape": {
     "menu": {
