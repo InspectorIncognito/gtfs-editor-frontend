@@ -59,7 +59,7 @@
                                       @vuetable-pagination:change-page="onChangePage">
           </VuetablePaginationDropDown>
         </div>
-        <div class="table-errors">aquí poner error global</div>
+        <div class="table-errors">-</div>
         <div class="table-footer-buttons">
           <button class="btn green" @click="saveChanges"><span>{{ $t('vuetable.save') }}</span></button>
           <slot name="additional-buttons"></slot>
