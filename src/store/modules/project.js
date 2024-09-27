@@ -24,11 +24,11 @@ export default {
   },
   actions: {
     deleteCurrentProject({commit, state}) {
-      ProjectsAPI.deleteProject(state.currentProject.project_id).then(() => {
-        commit('project/setShowDeletionModal', false);
-        commit("project/setProjectList", state.projectList.filter(
+      return ProjectsAPI.deleteProject(state.currentProject.project_id).then(() => {
+        commit('setShowDeletionModal', false);
+        commit("setProjectList", state.projectList.filter(
           project => project.project_id !== state.currentProject.project_id));
-        commit('project/setCurrentProject', null);
+        commit('setCurrentProject', null);
       }).catch(error => {
         console.error(error.response.data);
       });

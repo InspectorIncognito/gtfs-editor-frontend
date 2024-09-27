@@ -22,7 +22,7 @@ export default {
       ModalType: Enums.MessageModalType
     }
   },
-  computed: mapState([
+  computed: mapState('project', [
     'showDeletionModal',
     'currentProject'
   ]),
@@ -31,7 +31,9 @@ export default {
       this.$store.commit('project/setShowDeletionModal', false);
     },
     deleteProject() {
-      this.$store.dispatch('project/deleteCurrentProject');
+      this.$store.dispatch('project/deleteCurrentProject').then(() => {
+        this.$router.push({name: 'myprojects'});
+      });
     }
   }
 }
