@@ -46,7 +46,7 @@ const routes = [
 
   },
   {
-    path: '/user/email-verification',
+    path: '/api/user/email-verification',
     name: 'email-verification',
     component: ConfirmationEmailView,
     props: (route) => ({
@@ -66,7 +66,7 @@ const routes = [
     component: RecoverPasswordRequestView
   },
   {
-    path: '/user/recover-password',
+    path: '/api/user/recover-password',
     name: 'recover-password',
     component: RecoverPasswordView,
     props: (route) => ({
