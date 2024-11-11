@@ -10,13 +10,13 @@ const BaseAPI = class {
         return `${this.end_point}${projectId}/${this.table}/`
     }
     getFullBaseURL(projectId){
-        return httpClient.getBaseURL()+this.getBaseURL(projectId);
+        return this.getBaseURL(projectId);
     }
     getDetailURL(projectId, id) {
         return `${this.getBaseURL(projectId)}${id}/`
     }
     getFullDetailURL(projectId, id) {
-        return httpClient.getBaseURL()+this.getDetailURL(projectId, id);
+        return this.getDetailURL(projectId, id);
     }
     getAll(projectId){
         return httpClient.get(this.getBaseURL(projectId), {
