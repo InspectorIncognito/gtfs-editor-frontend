@@ -104,5 +104,9 @@ export default {
       return agenciesAPI.agenciesAPI.uploadCSV(this.$route.params.projectId, file);
     }
   },
+  created() {
+    console.log('AgencyView created');
+    console.log(agenciesAPI.agenciesAPI.getFullBaseURL(this.$route.params.projectId))
+  }
 };
 </script>
