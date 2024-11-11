@@ -25,7 +25,7 @@ export default {
     return {
       tableTitle: 'Agency',
       infoURL: "https://developers.google.com/transit/gtfs/reference#agencytxt",
-      url: agenciesAPI.getFullBaseURL(this.$route.params.projectId),
+      url: agenciesAPI.agenciesAPI.getFullBaseURL(this.$route.params.projectId),
       fields: [
         {
           name: 'actions',
@@ -105,8 +105,6 @@ export default {
     }
   },
   created() {
-    console.log('AgencyView created');
-    console.log(agenciesAPI.getFullBaseURL(this.$route.params.projectId))
   }
 };
 </script>
