@@ -44,6 +44,7 @@ export default {
       this.map = new mapboxgl.Map({
         container: this.$refs.map,
         style: 'mapbox://styles/mapbox/light-v10', // stylesheet location
+        logoPosition: 'bottom-left',
       });
       this.map.on('load', () => {
         this.envelope(this.map, this.projectId);
