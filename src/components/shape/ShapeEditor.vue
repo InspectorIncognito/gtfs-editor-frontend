@@ -150,6 +150,7 @@ export default {
     return {
       localShape: this.shape,
       localEditionMode: this.editionMode,
+      mapInitialized: false,
       map: null,
       points: [],
       geojson: {
@@ -223,37 +224,41 @@ export default {
     }
   },
   mounted() {
-    // Retraso simulado antes de inicializar el mapa
-    setTimeout(() => {
-    this.map = new mapboxgl.Map({
-      container: this.$refs.map,
-      style: 'mapbox://styles/mapbox/light-v10', // stylesheet location
-    });
-    this.map.on('load', () => {
-      switch (this.localEditionMode) {
-        case this.Enums.ShapeEditorEditionMode.SIMPLE:
-          if (this.mode === this.Enums.ShapeEditorMode.CREATE) {
-            this.changeToCreationMode();
-          } else {
-            this.changeToEditionMode(this.localShape);
-          }
-          break;
-        case this.Enums.ShapeEditorEditionMode.SELECT_RANGE:
-          this.changeToSelectRangeMode(this.localShape);
-          break;
-        case this.Enums.ShapeEditorEditionMode.DUPLICATE:
-          this.changeToDuplicationMode(this.localShape);
-          break;
-      }
-      this.envelope(this.map, this.projectId);
-      this.$emit('load');
-    });
-  }, 1000); // Retraso de 1 segundo
-},
+    if (this.shape) {
+      this.localShape = this.shape;
+      this.mapInitialized = true;
+      this.initializeMap();
+    }
+  },
   beforeDestroy() {
     this.map.remove();
   },
   methods: {
+    initializeMap() {
+      this.map = new mapboxgl.Map({
+      container: this.$refs.map,
+      style: 'mapbox://styles/mapbox/light-v10', // stylesheet location
+      });
+      this.map.on('load', () => {
+        switch (this.localEditionMode) {
+          case this.Enums.ShapeEditorEditionMode.SIMPLE:
+            if (this.mode === this.Enums.ShapeEditorMode.CREATE) {
+              this.changeToCreationMode();
+            } else {
+              this.changeToEditionMode(this.localShape);
+            }
+            break;
+          case this.Enums.ShapeEditorEditionMode.SELECT_RANGE:
+            this.changeToSelectRangeMode(this.localShape);
+            break;
+          case this.Enums.ShapeEditorEditionMode.DUPLICATE:
+            this.changeToDuplicationMode(this.localShape);
+            break;
+        }
+        this.envelope(this.map, this.projectId);
+        this.$emit('load');
+        });
+    },
     changeToCreationMode() {
       this.localEditionMode = this.Enums.ShapeEditorEditionMode.SIMPLE;
       this.localShape = {
@@ -970,6 +975,12 @@ export default {
   watch: {
     shape() {
       this.localShape = this.shape;
+    },
+    localShape(newValue) {
+      if (newValue && !this.mapInitialized) {
+        this.mapInitialized = true;
+        this.initializeMap();
+      }
     }
   }
 }
