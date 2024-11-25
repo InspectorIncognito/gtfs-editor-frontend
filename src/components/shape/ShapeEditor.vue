@@ -223,6 +223,8 @@ export default {
     }
   },
   mounted() {
+    // Retraso simulado antes de inicializar el mapa
+    setTimeout(() => {
     this.map = new mapboxgl.Map({
       container: this.$refs.map,
       style: 'mapbox://styles/mapbox/light-v10', // stylesheet location
@@ -246,7 +248,8 @@ export default {
       this.envelope(this.map, this.projectId);
       this.$emit('load');
     });
-  },
+  }, 1000); // Retraso de 1 segundo
+},
   beforeDestroy() {
     this.map.remove();
   },
