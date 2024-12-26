@@ -22,8 +22,10 @@
       <div class="right-content grid center">
         <template
             v-if="[Enums.ShapeEditorEditionMode.SIMPLE, Enums.ShapeEditorEditionMode.DUPLICATE].includes(localEditionMode)">
-          <button class="btn" @click="invertPoints"><span>{{ $t('shape.editor.invertShape') }}</span><span
-              class="material-icons">cached</span></button>
+          <button class="btn" @click="invertPoints">
+            <span>{{ $t('shape.editor.invertShape') }}</span>
+            <span class="material-icons">cached</span>
+          </button>
         </template>
         <button class="btn flat white"><span>{{ $t('general.howToUse') }}</span><i
             class="material-icons">help_outline</i></button>
