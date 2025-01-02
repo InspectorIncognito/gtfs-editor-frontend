@@ -224,7 +224,8 @@ export default {
     }
   },
   mounted() {
-    if (this.shape) {
+    // If the shape is already defined or Edition mode is "create"
+    if (this.shape || this.mode === this.Enums.ShapeEditorMode.CREATE) {
       this.localShape = this.shape;
       this.mapInitialized = true;
       this.initializeMap();
