@@ -224,7 +224,7 @@ export default {
     }
   },
   mounted() {
-    if (this.shape) {
+    if (this.shape || this.mode === this.Enums.ShapeEditorMode.CREATE) {
       this.localShape = this.shape;
       this.mapInitialized = true;
       this.initializeMap();
@@ -981,7 +981,14 @@ export default {
         this.mapInitialized = true;
         this.initializeMap();
       }
+    },
+    mode(newMode) {
+    if (newMode === this.Enums.ShapeEditorMode.CREATE && !this.mapInitialized) {
+      this.localShape = this.shape;
+      this.mapInitialized = true;
+      this.initializeMap();
     }
+  },
   }
 }
 </script>
