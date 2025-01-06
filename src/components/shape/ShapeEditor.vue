@@ -90,7 +90,7 @@
 </template>
 
 <script>
-import shapesAPI from '@/api/shapes.api';
+import shapesAPI from '@/api/gtfs/shapes.api';
 import mapMatching from '@/api/mapMatching.api';
 import * as mapboxgl from 'mapbox-gl';
 import * as turf from '@turf/turf';

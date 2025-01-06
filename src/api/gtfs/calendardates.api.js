@@ -1,4 +1,4 @@
-import BaseAPI from './base.api';
+import BaseAPI from '../base.api';
 
 const calendarDatesAPI = new BaseAPI.BaseAPI('calendardates');
 

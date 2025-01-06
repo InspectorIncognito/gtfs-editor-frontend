@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import shapesAPI from "@/api/shapes.api";
+import shapesAPI from "@/api/gtfs/shapes.api";
 import ShapeEditor from "@/components/shape/ShapeEditor.vue";
 import TableHeader from "@/components/vuetable/TableHeader";
 import Enums from '@/utils/enums.js'

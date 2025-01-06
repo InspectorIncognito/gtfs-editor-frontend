@@ -1,4 +1,4 @@
-import BaseAPI from './base.api';
+import BaseAPI from '../base.api';
 
 const frequenciesAPI = new BaseAPI.BaseAPI('frequencies');
 

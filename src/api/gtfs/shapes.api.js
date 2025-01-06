@@ -1,4 +1,4 @@
-import BaseAPI from './base.api';
+import BaseAPI from '../base.api';
 
 const shapesAPI = new BaseAPI.BaseAPI('shapes');
 

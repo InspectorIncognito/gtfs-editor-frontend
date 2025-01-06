@@ -11,7 +11,7 @@
 
 <script>
 import EditableTable from "@/components/vuetable/EditableTable.vue";
-import calendarDatesAPI from '@/api/calendardates.api';
+import calendarDatesAPI from '@/api/gtfs/calendardates.api';
 import TableHeader from "@/components/vuetable/TableHeader";
 import Enums from "@/utils/enums";
 

@@ -11,9 +11,9 @@
 
 <script>
 import EditableTable from "@/components/vuetable/EditableTable.vue";
-import fareRulesAPI from '@/api/farerules.api';
+import fareRulesAPI from '@/api/gtfs/farerules.api';
 import fareAttributesAPI from '@/api/fareattributes.api';
-import routesAPI from '@/api/routes.api';
+import routesAPI from '@/api/gtfs/routes.api';
 import TableHeader from "@/components/vuetable/TableHeader";
 import Enums from "@/utils/enums";
 

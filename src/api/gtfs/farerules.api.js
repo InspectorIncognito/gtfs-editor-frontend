@@ -1,4 +1,4 @@
-import BaseAPI from './base.api';
+import BaseAPI from '../base.api';
 
 const fareRulesAPI = new BaseAPI.BaseAPI('farerules');
 

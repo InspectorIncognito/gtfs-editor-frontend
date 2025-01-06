@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import shapesAPI from "@/api/shapes.api";
+import shapesAPI from "@/api/gtfs/shapes.api";
 import shapeMapMixin from "@/mixins/shapeMapMixin";
 import envelopeMixin from "@/mixins/envelopeMixin";
 import config from "@/config";

@@ -103,8 +103,8 @@
 </template>
 
 <script>
-import stopsAPI from '@/api/stops.api';
-import shapesAPI from '@/api/shapes.api';
+import stopsAPI from '@/api/gtfs/stops.api';
+import shapesAPI from '@/api/gtfs/shapes.api';
 import shapeMapMixin from '@/mixins/shapeMapMixin'
 import StopForm from '@/components/StopForm.vue';
 import FKSelect from '@/components/vuetable/inputs/FKSelect.vue';

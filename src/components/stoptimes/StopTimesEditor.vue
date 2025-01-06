@@ -137,9 +137,9 @@
 
 
 <script>
-import tripsAPI from '@/api/trips.api';
-import stopsAPI from '@/api/stops.api';
-import shapesAPI from '@/api/shapes.api';
+import tripsAPI from '@/api/gtfs/trips.api';
+import stopsAPI from '@/api/gtfs/stops.api';
+import shapesAPI from '@/api/gtfs/shapes.api';
 import fieldMixin from '@/mixins/fieldMixin.js';
 import GeneralizedInput from '@/components/vuetable/inputs/GeneralizedInput.vue';
 import SimpleSelect from '@/components/vuetable/inputs/SimpleSelect.vue';

@@ -11,8 +11,8 @@
 
 <script>
 import EditableTable from "@/components/vuetable/EditableTable.vue";
-import frequenciesAPI from '@/api/frequencies.api';
-import tripsAPI from '@/api/trips.api';
+import frequenciesAPI from '@/api/gtfs/frequencies.api';
+import tripsAPI from '@/api/gtfs/trips.api';
 import TableHeader from "@/components/vuetable/TableHeader";
 import Enums from "@/utils/enums";
 

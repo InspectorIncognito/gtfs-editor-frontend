@@ -53,7 +53,7 @@
 <script>
 import VuetablePagination from "@/components/vuetable/VueTablePagination.vue";
 import VuetablePaginationDropDown from "@/components/vuetable/VuetablePaginationDropDown";
-import shapesAPI from "@/api/shapes.api";
+import shapesAPI from "@/api/gtfs/shapes.api";
 import {debounce} from "debounce";
 import Enums from "@/utils/enums";
 import ShapeMenu from "@/components/shape/ShapeMenu";

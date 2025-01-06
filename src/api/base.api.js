@@ -2,59 +2,68 @@ import httpClient from './httpClient';
 
 const BaseAPI = class {
     constructor(table) {
-        this.base_end_point = '/api';
-        this.end_point = `${this.base_end_point}/projects/`;
+        this.client = httpClient
+        this.endpoint = this.client.getBaseURL() + 'projects/';
         this.table = table;
     }
-    getBaseURL(projectId) {
-        return `${this.end_point}${projectId}/${this.table}/`
+
+    getFullBaseURL(projectId) {
+        return `${this.endpoint}${projectId}/${this.table}/`
     }
-    getFullBaseURL(projectId){
-        return httpClient.getBaseURL() + this.getBaseURL(projectId);
-    }
+
     getDetailURL(projectId, id) {
-        return `${this.getBaseURL(projectId)}${id}/`
+        return `${this.getFullBaseURL(projectId)}${id}/`
     }
+
     getFullDetailURL(projectId, id) {
         return this.getDetailURL(projectId, id);
     }
-    getAll(projectId){
-        return httpClient.get(this.getBaseURL(projectId), {
+
+    getAll(projectId) {
+        return this.client.get(this.getFullBaseURL(projectId), {
             params: {
                 no_page: "True"
             },
             timeout: 0,
         });
     }
-    detail(projectId, id){
-        return httpClient.get(this.getDetailURL(projectId, id));
+
+    detail(projectId, id) {
+        return this.client.get(this.getDetailURL(projectId, id));
     }
+
     update(projectId, data) {
-        return httpClient.patch(this.getDetailURL(projectId, data.id), data);
+        return this.client.patch(this.getDetailURL(projectId, data.id), data);
     }
+
     put(projectId, data) {
-        return httpClient.put(this.getDetailURL(projectId, data.id), data);
+        return this.client.put(this.getDetailURL(projectId, data.id), data);
     }
-    create(projectId, data){
-        return httpClient.post(this.getBaseURL(projectId), data);
+
+    create(projectId, data) {
+        return this.client.post(this.getFullBaseURL(projectId), data);
     }
-    remove(projectId, data){
-        return httpClient.delete(this.getDetailURL(projectId, data.id));
+
+    remove(projectId, data) {
+        return this.client.delete(this.getDetailURL(projectId, data.id));
     }
-    downloadCSV(projectId){
-        const url =  this.getFullDetailURL(projectId, 'download');
-        return httpClient.get(url);
+
+    downloadCSV(projectId) {
+        const url = this.getFullDetailURL(projectId, 'download');
+        return this.client.get(url);
     }
-    uploadCSV (projectId, file) {
-        return httpClient.put(this.getDetailURL(projectId, 'upload'), file, {
+
+    uploadCSV(projectId, file) {
+        return this.client.put(this.getDetailURL(projectId, 'upload'), file, {
             headers: {
                 'Content-Type': 'application/octet-stream',
                 'Content-Disposition': `attachment; filename="${this.table}.txt";`,
             }
         })
     }
-    getIDs (projectId) {
-        return httpClient.get(this.getDetailURL(projectId, 'ids'))
+
+    getIDs(projectId) {
+        return this.client.get(this.getDetailURL(projectId, 'ids'))
     }
 }
 

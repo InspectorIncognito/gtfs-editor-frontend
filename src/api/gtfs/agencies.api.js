@@ -1,4 +1,4 @@
-import BaseAPI from './base.api';
+import BaseAPI from '../base.api';
 
 const agenciesAPI = new BaseAPI.BaseAPI('agencies');
 

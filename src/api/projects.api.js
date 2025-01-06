@@ -1,7 +1,6 @@
 import httpClient from './httpClient';
 
-const BASE_END_POINT = '/api'
-const END_POINT = `${BASE_END_POINT}/projects/`;
+const END_POINT = 'projects/';
 const getAllProjects = () => httpClient.get(`${END_POINT}?no_page`);
 
 const createProject = (name) => httpClient.post(`${END_POINT}`, {name});

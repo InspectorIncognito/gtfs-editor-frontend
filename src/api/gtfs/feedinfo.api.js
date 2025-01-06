@@ -1,7 +1,6 @@
-import httpClient from './httpClient';
+import httpClient from '../httpClient';
 
-const BASE_END_POINT = '/api'
-const END_POINT = `${BASE_END_POINT}/projects/`;
+const END_POINT = 'projects/';
 const TABLE = '/feedinfo/'
 
 const getFeedInfo = (projectId) => {

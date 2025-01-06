@@ -35,7 +35,7 @@
 <script>
 import EditableTable from "@/components/vuetable/EditableTable.vue";
 import InteractiveMap from "@/components/InteractiveMap.vue";
-import stopsAPI from '@/api/stops.api';
+import stopsAPI from '@/api/gtfs/stops.api';
 import stopsMixin from '@/mixins/stopsMixin.js';
 import TableHeader from "@/components/vuetable/TableHeader";
 
