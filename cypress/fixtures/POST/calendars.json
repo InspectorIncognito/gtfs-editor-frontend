@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "service_id": "something",
+  "monday": true,
+  "tuesday": true,
+  "wednesday": true,
+  "thursday": true,
+  "friday": true,
+  "saturday": true,
+  "sunday": true,
+  "start_date": "2025-01-01",
+  "end_date": "2025-01-01"
+}

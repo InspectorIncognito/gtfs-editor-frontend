@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "fare_attribute": 1,
+  "fare_id": "something",
+  "route": 1,
+  "route_id": "something",
+  "origin_id": "something",
+  "destination_id": "something",
+  "contains_id": "something"
+}

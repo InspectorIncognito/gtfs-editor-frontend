@@ -1,19 +1,19 @@
 <template>
   <FKSelect v-if="field.type===inputType.FK_SELECT"
-            :value="value" :field="field" :data="data" :errors="fieldErrors" :readonly="readonly" v-on="$listeners">
+            :name="field.name" :value="value" :field="field" :data="data" :errors="fieldErrors" :readonly="readonly" v-on="$listeners">
   </FKSelect>
   <SimpleSelect v-else-if="field.type===inputType.SIMPLE_SELECT"
-                :value="value" :field="field" :errors="fieldErrors" :readonly="readonly" v-on="$listeners">
+                :name="field.name" :value="value" :field="field" :errors="fieldErrors" :readonly="readonly" v-on="$listeners">
   </SimpleSelect>
   <SimpleCheckbox v-else-if="field.type===inputType.CHECKBOX"
-                  :value="value" :field="field" :readonly="readonly" v-on="$listeners">
+                  :name="field.name" :value="value" :field="field" :readonly="readonly" v-on="$listeners">
   </SimpleCheckbox>
   <ColorInput v-else-if="field.type===inputType.COLOR"
-              :value="value" :errors="fieldErrors" :readonly="readonly" v-on="$listeners">
+              :name="field.name" :value="value" :errors="fieldErrors" :readonly="readonly" v-on="$listeners">
   </ColorInput>
   <!-- Default -->
   <SimpleInput v-else
-               :value="value" :field="field" :errors="fieldErrors" :readonly="readonly" v-on="$listeners">
+               :name="field.name" :value="value" :field="field" :errors="fieldErrors" :readonly="readonly" v-on="$listeners">
   </SimpleInput>
 </template>
 

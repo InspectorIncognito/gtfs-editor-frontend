@@ -1,0 +1,76 @@
+{
+  "id": 1,
+  "shape_id": "TEST_SHAPE",
+  "points": [
+    {
+      "shape_pt_sequence": 1,
+      "shape_pt_lat": -33.460941,
+      "shape_pt_lon": -70.611322
+    },
+    {
+      "shape_pt_sequence": 2,
+      "shape_pt_lat": -33.461017,
+      "shape_pt_lon": -70.610366
+    },
+    {
+      "shape_pt_sequence": 3,
+      "shape_pt_lat": -33.461628,
+      "shape_pt_lon": -70.610467
+    },
+    {
+      "shape_pt_sequence": 4,
+      "shape_pt_lat": -33.461678,
+      "shape_pt_lon": -70.610443
+    },
+    {
+      "shape_pt_sequence": 5,
+      "shape_pt_lat": -33.461698,
+      "shape_pt_lon": -70.610294
+    },
+    {
+      "shape_pt_sequence": 6,
+      "shape_pt_lat": -33.462106,
+      "shape_pt_lon": -70.610367
+    },
+    {
+      "shape_pt_sequence": 7,
+      "shape_pt_lat": -33.46212,
+      "shape_pt_lon": -70.61016
+    },
+    {
+      "shape_pt_sequence": 8,
+      "shape_pt_lat": -33.461721,
+      "shape_pt_lon": -70.610079
+    },
+    {
+      "shape_pt_sequence": 9,
+      "shape_pt_lat": -33.46165,
+      "shape_pt_lon": -70.609857
+    },
+    {
+      "shape_pt_sequence": 10,
+      "shape_pt_lat": -33.461053,
+      "shape_pt_lon": -70.609777
+    },
+    {
+      "shape_pt_sequence": 11,
+      "shape_pt_lat": -33.461126,
+      "shape_pt_lon": -70.608955
+    },
+    {
+      "shape_pt_sequence": 12,
+      "shape_pt_lat": -33.461192,
+      "shape_pt_lon": -70.608211
+    },
+    {
+      "shape_pt_sequence": 13,
+      "shape_pt_lat": -33.460372,
+      "shape_pt_lon": -70.608097
+    },
+    {
+      "shape_pt_sequence": 14,
+      "shape_pt_lat": -33.459979,
+      "shape_pt_lon": -70.612168
+    }
+  ]
+}

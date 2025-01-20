@@ -86,10 +86,14 @@ export default {
     updateStop(data) {
       return stopsAPI.stopsAPI.update(this.$route.params.projectId, data);
     },
-    createStop(data) {
-      let response = stopsAPI.stopsAPI.create(this.$route.params.projectId, data);
-      this.$refs.map.addStop(response.data);
-      return response;
+    async createStop(data) {
+      await stopsAPI.stopsAPI.create(this.$route.params.projectId, data)
+          .then((response) => {
+            this.$refs.map.addStop(response.data);
+            return response;
+          }).catch((e) => {
+            console.error(e);
+          });
     },
     removeStop(data) {
       return stopsAPI.stopsAPI.remove(this.$route.params.projectId, data);

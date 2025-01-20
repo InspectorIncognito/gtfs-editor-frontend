@@ -1,0 +1,9 @@
+{
+  "id": 1,
+  "type": 0,
+  "from_stop": 1,
+  "from_stop_id": "something",
+  "to_stop": 1,
+  "to_stop_id": "something",
+  "min_transfer_time": 123
+}

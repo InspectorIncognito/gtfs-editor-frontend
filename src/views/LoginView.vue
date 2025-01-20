@@ -6,15 +6,15 @@
         <form class="user-form" @submit.prevent="login">
           <div>
             <label for="username">{{ $t('user.username') }}:</label>
-            <input type="text" id="username" v-model="username" required>
+            <input name="username" type="text" id="username" v-model="username" required>
           </div>
           <div>
             <label for="password">{{ $t('user.password') }}:</label>
-            <input type="password" id="password" v-model="password" required>
+            <input name="password" type="password" id="password" v-model="password" required>
             <a href="/recover-password-request">{{ $t('user.forgotPasswordQuestion') }}</a>
           </div>
           <div>
-            <button class="btn" type="submit">{{ $t('user.login') }}</button>
+            <button id="login-button" class="btn" type="submit">{{ $t('user.login') }}</button>
           </div>
         </form>
         <div class="user-link">
@@ -38,12 +38,20 @@ export default {
   },
   methods: {
     async login() {
-      this.$store.dispatch("auth/login", {username: this.username, password: this.password}).then(() => {
-        this.error = '';
-        this.$router.push({name: 'myprojects'});
-      }).catch((error) => {
-        this.errors = error.response.data;
-      });
+      try {
+        await this.$store.dispatch("auth/login", {
+          username: this.username,
+          password: this.password,
+        }).then(() => {
+          this.$router.push({name: 'myprojects'});
+        }).catch((error) => {
+          if (error.response && error.response.data) {
+            this.errors = error.response.data;
+          }
+        })
+      } catch {
+        this.errors = "Ocurrió un problema inesperado. Intenta nuevamente."
+      }
     },
   },
 };

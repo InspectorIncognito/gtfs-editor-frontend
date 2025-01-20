@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "pathway_id": "something",
+  "from_stop": 1,
+  "from_stop_id": "something",
+  "to_stop": 1,
+  "to_stop_id": "something",
+  "pathway_mode": 1,
+  "is_bidirectional": true
+}

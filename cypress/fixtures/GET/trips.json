@@ -1,0 +1,30 @@
+{
+  "pagination": {
+    "current_page": 1,
+    "next_page_url": null,
+    "prev_page_url": null,
+    "total": 1,
+    "per_page": 10,
+    "last_page": 1,
+    "from": 1,
+    "to": 1
+  },
+  "results": [
+    {
+      "id": 1,
+      "trip_id": "something",
+      "route": 1,
+      "route_id": "something",
+      "shape": 1,
+      "shape_id": "something",
+      "stop_times": [],
+      "service_id": "something",
+      "trip_headsign": "something",
+      "direction_id": null,
+      "trip_short_name": "something",
+      "block_id": "something",
+      "wheelchair_accessible": null,
+      "bikes_allowed": null
+    }
+  ]
+}

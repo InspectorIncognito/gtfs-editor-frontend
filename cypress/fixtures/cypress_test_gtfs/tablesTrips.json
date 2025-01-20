@@ -1,0 +1,77 @@
+{
+    "agency": {
+        "entries": 0,
+        "error_number": 0,
+        "warning_number": 0
+    },
+    "stops": {
+        "entries": 0,
+        "error_number": 0,
+        "warning_number": 0
+    },
+    "routes": {
+        "entries": 1,
+        "error_number": 0,
+        "warning_number": 0
+    },
+    "trips": {
+        "entries": 0,
+        "error_number": 0,
+        "warning_number": 0
+    },
+    "calendar": {
+        "entries": 1,
+        "error_number": 0,
+        "warning_number": 0
+    },
+    "calendar_dates": {
+        "entries": 0,
+        "error_number": 0,
+        "warning_number": 0
+    },
+    "fare_attributes": {
+        "entries": 0,
+        "error_number": 0,
+        "warning_number": 0
+    },
+    "fare_rules": {
+        "entries": 0,
+        "error_number": 0,
+        "warning_number": 0
+    },
+    "frequencies": {
+        "entries": 0,
+        "error_number": 0,
+        "warning_number": 0
+    },
+    "transfers": {
+        "entries": 0,
+        "error_number": 0,
+        "warning_number": 0
+    },
+    "pathways": {
+        "entries": 0,
+        "error_number": 0,
+        "warning_number": 0
+    },
+    "levels": {
+        "entries": 0,
+        "error_number": 0,
+        "warning_number": 0
+    },
+    "feed_info": {
+        "entries": 0,
+        "error_number": 0,
+        "warning_number": 0
+    },
+    "shapes": {
+        "entries": 1,
+        "error_number": 0,
+        "warning_number": 0
+    },
+    "stop_times": {
+        "entries": 0,
+        "error_number": 0,
+        "warning_number": 0
+    }
+}

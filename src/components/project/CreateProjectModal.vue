@@ -5,7 +5,7 @@
         <h2>{{ $t('myProjects.createProject') }}</h2>
       </div>
       <div class="content">
-        <input v-model="projectName" type="text" class="main-input-text" :placeholder="$t('myProjects.projectName')"
+        <input name="project-name" v-model="projectName" type="text" class="main-input-text" :placeholder="$t('myProjects.projectName')"
                :class="{error: errors.name }" @focus="errors={}"
                v-tooltip="{ theme: 'error-tooltip', content: errors.name?errors.name[0]:'', shown: errors.name !== undefined }"/>
         <div class="title">
@@ -49,7 +49,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn green" @click="createProjectAction"
+        <button id="create-gtfs-button" class="btn green" @click="createProjectAction"
                 :disabled="creationType===projectCreationType.FROM_GTFS && filename===null">
           <span>{{ $t('general.create') }}</span>
         </button>

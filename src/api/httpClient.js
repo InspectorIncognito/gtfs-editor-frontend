@@ -1,8 +1,8 @@
 import axios from 'axios';
 import store from "@/store";
 
-const baseUrl = process.env.VUE_APP_BASE_URL
-const apiEndpoint = 'api/'
+const baseUrl = process.env.VUE_APP_BASE_URL ? process.env.VUE_APP_BASE_URL : '';
+const apiEndpoint = 'api/';
 
 const httpClient = axios.create({
     baseURL: `${baseUrl}/${apiEndpoint}`,
