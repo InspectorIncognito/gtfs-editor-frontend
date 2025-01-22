@@ -12,7 +12,7 @@
 <script>
 import EditableTable from "@/components/vuetable/EditableTable.vue";
 import fareAttributesAPI from '@/api/fareattributes.api';
-import agenciesAPI from '@/api/agencies.api';
+import agenciesAPI from '@/api/gtfs/agencies.api';
 import TableHeader from "@/components/vuetable/TableHeader";
 import Enums from "@/utils/enums";
 

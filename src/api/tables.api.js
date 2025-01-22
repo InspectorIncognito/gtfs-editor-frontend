@@ -1,7 +1,9 @@
 import httpClient from './httpClient';
 
+const END_POINT = 'projects/'
+
 const list_tables = (projectId) => {
-    let url = `/api/projects/${projectId}/tables/`;
+    let url = `${END_POINT}${projectId}/tables/`;
     return httpClient.get(url);
 };
 

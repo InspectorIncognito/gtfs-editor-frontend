@@ -3,9 +3,9 @@
 </template>
 
 <script>
-import tripsAPI from '@/api/trips.api';
-import stopsAPI from '@/api/stops.api';
-import shapesAPI from '@/api/shapes.api';
+import tripsAPI from '@/api/gtfs/trips.api';
+import stopsAPI from '@/api/gtfs/stops.api';
+import shapesAPI from '@/api/gtfs/shapes.api';
 import envelopeMixin from '@/mixins/envelopeMixin'
 import config from '@/config.js'
 

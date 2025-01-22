@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "route_id": "something",
+  "agency": 1,
+  "agency_id": "something",
+  "route_short_name": "something",
+  "route_long_name": "something",
+  "route_desc": "something",
+  "route_type": 0,
+  "route_url": "something",
+  "route_color": "000000",
+  "route_text_color": "0000000"
+}

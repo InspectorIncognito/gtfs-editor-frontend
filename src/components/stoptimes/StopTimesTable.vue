@@ -82,7 +82,7 @@
 <script>
 import VuetablePaginationDropDown from '@/components/vuetable/VuetablePaginationDropDown.vue';
 import VuetablePagination from '@/components/vuetable/VueTablePagination.vue';
-import tripsAPI from '@/api/trips.api';
+import tripsAPI from '@/api/gtfs/trips.api';
 import {debounce} from 'debounce';
 import StopTimesMenu from '@/components/stoptimes/StopTimesMenu';
 import MessageModal from '@/components/modal/MessageModal';

@@ -12,7 +12,7 @@
 <script>
 import StopTimesEditor from "@/components/stoptimes/StopTimesEditor.vue";
 import TableHeader from "@/components/vuetable/TableHeader";
-import tripsAPI from "@/api/trips.api";
+import tripsAPI from "@/api/gtfs/trips.api";
 
 export default {
   name: 'StopTimesEditorView',

@@ -12,7 +12,7 @@
 <script>
 import EditableTable from "@/components/vuetable/EditableTable.vue";
 import pathwaysAPI from '@/api/pathways.api';
-import stopsAPI from '@/api/stops.api'
+import stopsAPI from '@/api/gtfs/stops.api'
 import TableHeader from "@/components/vuetable/TableHeader";
 import Enums from "@/utils/enums";
 

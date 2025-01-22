@@ -16,10 +16,10 @@
 
 <script>
 import EditableTable from "@/components/vuetable/EditableTable.vue";
-import tripsAPI from '@/api/trips.api';
-import routesAPI from '@/api/routes.api';
-import shapesAPI from '@/api/shapes.api';
-import servicesAPI from '@/api/services.api';
+import tripsAPI from '@/api/gtfs/trips.api';
+import routesAPI from '@/api/gtfs/routes.api';
+import shapesAPI from '@/api/gtfs/shapes.api';
+import servicesAPI from '@/api/gtfs/services.api';
 import TableHeader from "@/components/vuetable/TableHeader";
 import Enums from "@/utils/enums";
 

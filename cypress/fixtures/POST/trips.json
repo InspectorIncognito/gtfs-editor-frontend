@@ -1,0 +1,16 @@
+{
+  "id": 1280,
+  "trip_id": "something",
+  "route": 148,
+  "route_id": "asd",
+  "shape": 294,
+  "shape_id": "EN",
+  "stop_times": [],
+  "service_id": "D",
+  "trip_headsign": "something",
+  "direction_id": null,
+  "trip_short_name": "something",
+  "block_id": "something",
+  "wheelchair_accessible": null,
+  "bikes_allowed": null
+}

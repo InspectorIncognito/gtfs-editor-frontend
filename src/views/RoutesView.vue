@@ -16,8 +16,8 @@
 
 <script>
 import EditableTable from "@/components/vuetable/EditableTable.vue";
-import routesAPI from '@/api/routes.api';
-import agenciesAPI from '@/api/agencies.api'
+import routesAPI from '@/api/gtfs/routes.api';
+import agenciesAPI from '@/api/gtfs/agencies.api'
 import TableHeader from "@/components/vuetable/TableHeader";
 import Enums from "@/utils/enums";
 

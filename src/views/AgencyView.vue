@@ -11,7 +11,7 @@
 
 <script>
 import EditableTable from "@/components/vuetable/EditableTable.vue";
-import agenciesAPI from '@/api/agencies.api';
+import agenciesAPI from '@/api/gtfs/agencies.api';
 import timezones from '@/api/timezones';
 import TableHeader from "@/components/vuetable/TableHeader";
 import Enums from "@/utils/enums";

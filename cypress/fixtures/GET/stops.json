@@ -1,0 +1,33 @@
+{
+  "pagination": {
+    "current_page": 1,
+    "next_page_url": null,
+    "prev_page_url": null,
+    "total": 1,
+    "per_page": 10,
+    "last_page": 1,
+    "from": 1,
+    "to": 1
+  },
+  "results": [
+    {
+      "id": 1,
+      "stop_id": "something",
+      "stop_code": "something",
+      "stop_name": "something",
+      "stop_lat": 0.1,
+      "stop_lon": 0.1,
+      "stop_url": "something",
+      "stop_desc": "something",
+      "zone_id": "something",
+      "location_type": "something",
+      "parent_station": "something",
+      "parent_station_id": "something",
+      "stop_timezone": "something",
+      "wheelchair_boarding": "something",
+      "level": "something",
+      "level_id": "something",
+      "platform_code": "something"
+    }
+  ]
+}

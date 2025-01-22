@@ -1,0 +1,27 @@
+{
+  "pagination": {
+    "current_page": 1,
+    "next_page_url": null,
+    "prev_page_url": null,
+    "total": 1,
+    "per_page": 10,
+    "last_page": 1,
+    "from": 1,
+    "to": 1
+  },
+  "results": [
+    {
+      "id": 1,
+      "route_id": "something",
+      "agency": 1,
+      "agency_id": "something",
+      "route_short_name": "something",
+      "route_long_name": "something",
+      "route_desc": "something",
+      "route_type": 0,
+      "route_url": "something",
+      "route_color": "000000",
+      "route_text_color": "000000"
+    }
+  ]
+}

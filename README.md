@@ -14,6 +14,7 @@ Having Node version `14.17.3` and npm version `6.14.13` installed is recommended
 
 ```
 npm install
+npm update
 ```
 
 Create a virtual environment file at root place with name `.env.development` with content:

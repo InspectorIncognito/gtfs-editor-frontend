@@ -1,0 +1,9 @@
+{
+  "id": 1,
+  "trip": 1,
+  "trip_id": "something",
+  "start_time": "00:00:00",
+  "end_time": "00:00:00",
+  "headway_secs": 123,
+  "exact_times": 1
+}

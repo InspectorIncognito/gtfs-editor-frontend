@@ -1,4 +1,4 @@
-import stopsAPI from '@/api/stops.api';
+import stopsAPI from '@/api/gtfs/stops.api';
 import levelsAPI from '@/api/levels.api';
 import Enums from "@/utils/enums";
 

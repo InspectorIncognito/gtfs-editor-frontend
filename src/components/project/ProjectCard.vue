@@ -14,7 +14,7 @@
           <h2>{{ project.name }}</h2>
         </router-link>
         <div class="btn icon flat btn-options">
-          <i class="material-icons" @click="showMenu=!showMenu">more_vert</i>
+          <i class="material-icons project-options" @click="showMenu=!showMenu">more_vert</i>
           <ProjectMenu v-if="showMenu" :project="project" @close="showMenu=false"></ProjectMenu>
         </div>
       </div>

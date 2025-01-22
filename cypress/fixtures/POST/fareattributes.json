@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "fare_id": "something",
+  "price": 123,
+  "currency_type": "something",
+  "payment_method": 1,
+  "transfers": 0,
+  "transfer_duration": 123,
+  "agency": 1,
+  "agency_id": "something"
+}

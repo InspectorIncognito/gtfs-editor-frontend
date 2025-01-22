@@ -1,0 +1,23 @@
+{
+  "pagination": {
+    "current_page": 1,
+    "next_page_url": null,
+    "prev_page_url": null,
+    "total": 1,
+    "per_page": 10,
+    "last_page": 1,
+    "from": 1,
+    "to": 1
+  },
+  "results": [
+    {
+      "id": 1,
+      "trip": 1,
+      "trip_id": "something",
+      "start_time": "00:00:00",
+      "end_time": "00:00:00",
+      "headway_secs": 123,
+      "exact_times": 1
+    }
+  ]
+}

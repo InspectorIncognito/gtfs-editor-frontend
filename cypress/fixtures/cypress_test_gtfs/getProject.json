@@ -1,0 +1,52 @@
+[
+  {
+        "project_id": 1,
+        "name": "cypress_test_gtfs",
+        "feedinfo": null,
+        "last_modification": "2025-01-01T00:00:00.000000Z",
+        "gtfs_file_updated_at": null,
+        "gtfs_building_and_validation_status": null,
+        "gtfs_building_duration": null,
+        "envelope": {
+            "type": "Feature",
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            -180.0,
+                            -90.0
+                        ],
+                        [
+                            180.0,
+                            -90.0
+                        ],
+                        [
+                            180.0,
+                            90.0
+                        ],
+                        [
+                            -180.0,
+                            90.0
+                        ],
+                        [
+                            -180.0,
+                            -90.0
+                        ]
+                    ]
+                ]
+            },
+            "properties": {}
+        },
+        "creation_status": "empty",
+        "loading_gtfs_error_message": null,
+        "gtfs_validation": {
+            "error_number": null,
+            "warning_number": null,
+            "info_number": null,
+            "message": null,
+            "duration": null
+        }
+    }
+]
+
