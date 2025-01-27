@@ -1,9 +1,9 @@
 import httpClient from './httpClient';
 
-const END_POINT = 'projects/'
+const END_POINT = '/projects'
 
 const list_tables = (projectId) => {
-    let url = `${END_POINT}${projectId}/tables/`;
+    let url = `${END_POINT}/${projectId}/tables/`;
     return httpClient.get(url);
 };
 

@@ -12,7 +12,7 @@ const BaseAPI = class {
     }
 
     getDetailURL(projectId, id) {
-        return `${this.getFullBaseURL(projectId)}${id}/`
+        return `${this.endpoint}/${projectId}/${this.table}/${id}/`;
     }
 
     getFullDetailURL(projectId, id) {
