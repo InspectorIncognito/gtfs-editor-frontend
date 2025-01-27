@@ -3,7 +3,7 @@ import httpClient from './httpClient';
 const BaseAPI = class {
     constructor(table) {
         this.client = httpClient;
-        this.endpoint = this.client.getBaseURL() + 'projects/';
+        this.endpoint = 'projects/';
         this.table = table;
     }
 

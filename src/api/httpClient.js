@@ -2,9 +2,10 @@ import axios from 'axios';
 import store from "@/store";
 
 const baseUrl = process.env.VUE_APP_BASE_URL ? process.env.VUE_APP_BASE_URL : '';
+const apiEndpoint = 'api/';
 
 const httpClient = axios.create({
-    baseURL: `${baseUrl}/`,
+    baseURL: `${baseUrl}/${apiEndpoint}`,
     timeout: 5000, // indicates, 1000ms i.e. 1 second
     headers: {
         "Content-Type": "application/json"
@@ -12,7 +13,7 @@ const httpClient = axios.create({
 });
 
 httpClient.getBaseURL = () => {
-    return `${baseUrl}/`;
+    return `${baseUrl}/${apiEndpoint}`;
 }
 
 // interceptor to catch errors
