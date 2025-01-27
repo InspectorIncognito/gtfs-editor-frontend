@@ -11,7 +11,7 @@
 
 <script>
 import EditableTable from "@/components/vuetable/EditableTable.vue";
-import transfersAPI from '@/api/transfers.api';
+import transfersAPI from '@/api/gtfs/transfers.api';
 import stopsAPI from '@/api/gtfs/stops.api'
 import TableHeader from "@/components/vuetable/TableHeader";
 import Enums from "@/utils/enums";

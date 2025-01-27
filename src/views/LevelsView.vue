@@ -11,7 +11,7 @@
 
 <script>
 import EditableTable from "@/components/vuetable/EditableTable.vue";
-import levelsAPI from '@/api/levels.api';
+import levelsAPI from '@/api/gtfs/levels.api';
 import TableHeader from "@/components/vuetable/TableHeader";
 import Enums from "@/utils/enums";
 

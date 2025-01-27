@@ -7,8 +7,12 @@ const BaseAPI = class {
         this.table = table;
     }
 
-    getFullBaseURL(projectId) {
+    getBaseUrl(projectId){
         return `${this.endpoint}/${projectId}/${this.table}/`
+    }
+
+    getFullBaseURL(projectId) {
+        return `${this.client.getBaseURL()}${this.getBaseUrl(projectId)}`
     }
 
     getDetailURL(projectId, id) {
@@ -20,7 +24,7 @@ const BaseAPI = class {
     }
 
     getAll(projectId) {
-        return this.client.get(this.getFullBaseURL(projectId), {
+        return this.client.get(this.getBaseUrl(projectId), {
             params: {
                 no_page: "True"
             },
@@ -41,7 +45,7 @@ const BaseAPI = class {
     }
 
     create(projectId, data) {
-        return this.client.post(this.getFullBaseURL(projectId), data);
+        return this.client.post(this.getBaseUrl(projectId), data);
     }
 
     remove(projectId, data) {

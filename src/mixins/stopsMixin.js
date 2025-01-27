@@ -1,5 +1,5 @@
 import stopsAPI from '@/api/gtfs/stops.api';
-import levelsAPI from '@/api/levels.api';
+import levelsAPI from '@/api/gtfs/levels.api';
 import Enums from "@/utils/enums";
 
 let stopsMixin = {
