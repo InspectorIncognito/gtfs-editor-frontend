@@ -3,12 +3,12 @@ import httpClient from './httpClient';
 const BaseAPI = class {
     constructor(table) {
         this.client = httpClient;
-        this.endpoint = 'projects/';
+        this.endpoint = '/projects';
         this.table = table;
     }
 
     getFullBaseURL(projectId) {
-        return `${this.endpoint}${projectId}/${this.table}/`
+        return `${this.endpoint}/${projectId}/${this.table}/`
     }
 
     getDetailURL(projectId, id) {
