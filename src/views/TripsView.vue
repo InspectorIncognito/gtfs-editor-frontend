@@ -54,7 +54,7 @@ export default {
           id_field: 'route',
           required: true,
           ajax_params: {
-            url: routesAPI.routesAPI.getFullBaseURL(this.$route.params.projectId),
+            url: routesAPI.routesAPI.getBaseUrl(this.$route.params.projectId),
           },
           type: Enums.InputType.FK_SELECT
         },
@@ -66,7 +66,7 @@ export default {
           nullable: true,
           id_field: 'shape',
           ajax_params: {
-            url: shapesAPI.shapesAPI.getFullBaseURL(this.$route.params.projectId),
+            url: shapesAPI.shapesAPI.getBaseUrl(this.$route.params.projectId),
           },
           type: Enums.InputType.FK_SELECT
         },
@@ -76,7 +76,7 @@ export default {
           foreignKey: true,
           id_field: 'service_id',
           ajax_params: {
-            url: servicesAPI.servicesAPI.getFullBaseURL(this.$route.params.projectId),
+            url: servicesAPI.servicesAPI.getBaseUrl(this.$route.params.projectId),
           },
           type: Enums.InputType.FK_SELECT
         },

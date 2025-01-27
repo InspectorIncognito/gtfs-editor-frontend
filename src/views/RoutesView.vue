@@ -52,7 +52,7 @@ export default {
           id_field: 'agency',
           required: true,
           ajax_params: {
-            url: agenciesAPI.agenciesAPI.getFullBaseURL(this.$route.params.projectId),
+            url: agenciesAPI.agenciesAPI.getBaseUrl(this.$route.params.projectId),
           },
           type: Enums.InputType.FK_SELECT
         },

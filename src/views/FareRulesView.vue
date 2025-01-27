@@ -41,7 +41,7 @@ export default {
           id_field: 'fare_attribute',
           required: true,
           ajax_params: {
-            url: fareAttributesAPI.fareAttributesAPI.getFullBaseURL(this.$route.params.projectId),
+            url: fareAttributesAPI.fareAttributesAPI.getBaseUrl(this.$route.params.projectId),
           },
           type: Enums.InputType.FK_SELECT,
         },
@@ -53,7 +53,7 @@ export default {
           nullable: true,
           id_field: 'route',
           ajax_params: {
-            url: routesAPI.routesAPI.getFullBaseURL(this.$route.params.projectId),
+            url: routesAPI.routesAPI.getBaseUrl(this.$route.params.projectId),
           },
           type: Enums.InputType.FK_SELECT,
         },
