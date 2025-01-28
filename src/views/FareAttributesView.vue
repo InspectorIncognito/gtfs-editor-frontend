@@ -11,7 +11,7 @@
 
 <script>
 import EditableTable from "@/components/vuetable/EditableTable.vue";
-import fareAttributesAPI from '@/api/fareattributes.api';
+import fareAttributesAPI from '@/api/gtfs/fareattributes.api';
 import agenciesAPI from '@/api/gtfs/agencies.api';
 import TableHeader from "@/components/vuetable/TableHeader";
 import Enums from "@/utils/enums";
@@ -82,7 +82,7 @@ export default {
           foreignKey: true,
           id_field: 'agency',
           ajax_params: {
-            url: agenciesAPI.agenciesAPI.getFullBaseURL(this.$route.params.projectId),
+            url: agenciesAPI.agenciesAPI.getBaseUrl(this.$route.params.projectId),
           },
           type: Enums.InputType.FK_SELECT,
         },

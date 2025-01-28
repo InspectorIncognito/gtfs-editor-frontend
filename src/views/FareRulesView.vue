@@ -12,7 +12,7 @@
 <script>
 import EditableTable from "@/components/vuetable/EditableTable.vue";
 import fareRulesAPI from '@/api/gtfs/farerules.api';
-import fareAttributesAPI from '@/api/fareattributes.api';
+import fareAttributesAPI from '@/api/gtfs/fareattributes.api';
 import routesAPI from '@/api/gtfs/routes.api';
 import TableHeader from "@/components/vuetable/TableHeader";
 import Enums from "@/utils/enums";
@@ -41,7 +41,7 @@ export default {
           id_field: 'fare_attribute',
           required: true,
           ajax_params: {
-            url: fareAttributesAPI.fareAttributesAPI.getFullBaseURL(this.$route.params.projectId),
+            url: fareAttributesAPI.fareAttributesAPI.getBaseUrl(this.$route.params.projectId),
           },
           type: Enums.InputType.FK_SELECT,
         },
@@ -53,7 +53,7 @@ export default {
           nullable: true,
           id_field: 'route',
           ajax_params: {
-            url: routesAPI.routesAPI.getFullBaseURL(this.$route.params.projectId),
+            url: routesAPI.routesAPI.getBaseUrl(this.$route.params.projectId),
           },
           type: Enums.InputType.FK_SELECT,
         },

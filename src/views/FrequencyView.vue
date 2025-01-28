@@ -40,7 +40,7 @@ export default {
           foreignKey: true,
           id_field: 'trip',
           ajax_params: {
-            url: tripsAPI.tripsAPI.getFullBaseURL(this.$route.params.projectId),
+            url: tripsAPI.tripsAPI.getBaseUrl(this.$route.params.projectId),
           },
           type: Enums.InputType.FK_SELECT
         },

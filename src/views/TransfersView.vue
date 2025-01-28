@@ -11,7 +11,7 @@
 
 <script>
 import EditableTable from "@/components/vuetable/EditableTable.vue";
-import transfersAPI from '@/api/transfers.api';
+import transfersAPI from '@/api/gtfs/transfers.api';
 import stopsAPI from '@/api/gtfs/stops.api'
 import TableHeader from "@/components/vuetable/TableHeader";
 import Enums from "@/utils/enums";
@@ -53,7 +53,7 @@ export default {
           id_field: 'from_stop',
           required: true,
           ajax_params: {
-            url: stopsAPI.stopsAPI.getFullBaseURL(this.$route.params.projectId),
+            url: stopsAPI.stopsAPI.getBaseUrl(this.$route.params.projectId),
           },
           type: Enums.InputType.FK_SELECT
         },
@@ -66,7 +66,7 @@ export default {
           id_field: 'to_stop',
           required: true,
           ajax_params: {
-            url: stopsAPI.stopsAPI.getFullBaseURL(this.$route.params.projectId),
+            url: stopsAPI.stopsAPI.getBaseUrl(this.$route.params.projectId),
           },
           type: Enums.InputType.FK_SELECT
         },

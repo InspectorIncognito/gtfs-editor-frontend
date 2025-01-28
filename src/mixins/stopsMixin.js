@@ -1,5 +1,5 @@
 import stopsAPI from '@/api/gtfs/stops.api';
-import levelsAPI from '@/api/levels.api';
+import levelsAPI from '@/api/gtfs/levels.api';
 import Enums from "@/utils/enums";
 
 let stopsMixin = {
@@ -72,7 +72,7 @@ let stopsMixin = {
           fk_name: 'stop_id',
           nullable: true,
           ajax_params: {
-            url: stopsAPI.stopsAPI.getFullBaseURL(this.$route.params.projectId),
+            url: stopsAPI.stopsAPI.getBaseUrl(this.$route.params.projectId),
           },
           type: Enums.InputType.FK_SELECT
         },
@@ -104,7 +104,7 @@ let stopsMixin = {
           id_field: 'level',
           nullable: true,
           ajax_params: {
-            url: levelsAPI.levelsAPI.getFullBaseURL(this.$route.params.projectId),
+            url: levelsAPI.levelsAPI.getBaseUrl(this.$route.params.projectId),
           },
           type: Enums.InputType.FK_SELECT
         },
