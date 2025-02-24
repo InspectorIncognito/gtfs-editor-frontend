@@ -1,6 +1,6 @@
 import httpClient from "../httpClient";
 
-const BASE_END_POINT = '/api/user';
+const BASE_END_POINT = '/user';
 const END_POINT = `${BASE_END_POINT}/recover-password`;
 
 //preguntar si está bien conectado con el backend porque para cada persona es diferente el url :C
