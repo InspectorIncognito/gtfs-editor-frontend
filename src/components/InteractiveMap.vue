@@ -116,6 +116,7 @@ import {debounce} from 'debounce';
 
 
 const mapboxgl = require('mapbox-gl');
+const turf = require('@turf/turf');
 mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_TOKEN;
 
 export default {
@@ -131,6 +132,8 @@ export default {
   ],
   data() {
     return {
+      ruleSourceName: 'rule-source',
+      ruleButtonId: 'rule-button',
       shape: {
         selectedShape: null,
         activeShape: null,
@@ -201,6 +204,8 @@ export default {
     },
   },
   mounted() {
+
+
     document.addEventListener('keydown', this.escapeKeyPressed);
     this.filterStops = debounce(this.filterStops, 300);
     this.$nextTick(() => {
@@ -213,12 +218,30 @@ export default {
           style: 'mapbox://styles/mapbox/light-v10',
           zoom: 16
         });
+        const buttonId = this.ruleButtonId;
+        class RulerControl {
+        onAdd() {
+          this._div = document.createElement('div');
+          this._div.className = 'mapboxgl-ctrl mapboxgl-ctrl-group';
+          this._div.innerHTML = `<button id="` + buttonId + `" class="syncAltSolid"><span class="material-icons">square_foot</span></button>`;
+          return this._div;
+          }
+        }
+        this.map.addControl(new RulerControl(), 'top-right');
         this.map.on('load', () => {
           this.envelope(this.map, this.projectId);
+          const scale = new mapboxgl.ScaleControl({
+            maxWidth: 80,
+            unit: 'metric'
+          })
+          this.map.addControl(scale)
           this.addSourceAndLayersForStops();
           this.addSourceAndLayersForShape();
+          this.addSourceAndLayerForRuler();
           this.addListeners();
           this.$emit('load');
+
+
         })
       }).catch((err) => {
         alert('Unable to fetch stops');
@@ -424,6 +447,136 @@ export default {
     },
     reGenerateStops() {
       this.map.getSource('stop-source').setData(this.getStopGeojson());
+    },
+    addSourceAndLayerForRuler(){
+      let ruleSource = {
+                type: 'FeatureCollection',
+                features: []
+            };
+            let ruleLayer = {
+                id: 'rule-layer',
+                source: this.ruleSourceName,
+                type: 'line',
+                layout: {
+                    'line-cap': 'round',
+                    'line-join': 'round'
+                },
+                paint: {
+                    'line-color': '#21B0CF',
+                    'line-width': 2
+                },
+                filter: ['in', '$type', 'LineString']
+            };
+            let measurePointLayer = {
+                id: 'measure-point-layer',
+                type: 'circle',
+                source: this.ruleSourceName,
+                paint: {
+                    'circle-radius': 4,
+                    'circle-color': '#21B0CF'
+                },
+                filter: ['in', '$type', 'Point']
+            };
+            let measurePointLabelLayer = {
+                id: 'measure-point-label-layer',
+                type: 'symbol',
+                source: this.ruleSourceName,
+                layout: {
+                    'text-field': ['get', 'distance'],
+                    'text-offset': [0, 1],
+                    'text-size': 14,
+                    'text-font': ['Roboto Medium'],
+                },
+                paint: {
+                    'text-color': '#21B0CF',
+                    'text-halo-blur': 0,
+                    'text-halo-color': '#0d0d0d',
+                    'text-halo-width': 1
+                },
+                filter: ['in', '$type', 'Point']
+            };
+
+            let linestring = {
+                'type': 'Feature',
+                'geometry': {
+                    'type': 'LineString',
+                    'coordinates': []
+                }
+            };
+
+            let ruleClickEvent = (e) => {
+                const features = this.map.queryRenderedFeatures(e.point, {layers: ['measure-point-layer']});
+                if (ruleSource.features.length > 1) ruleSource.features.pop();
+
+                if (features.length) {
+                    const id = features[0].properties.id;
+                    ruleSource.features = ruleSource.features.filter(
+                        (point) => point.properties.id !== id
+                    );
+                } else {
+                    const point = {
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [e.lngLat.lng, e.lngLat.lat]
+                        },
+                        'properties': {
+                            'id': String(new Date().getTime())
+                        }
+                    };
+
+                    ruleSource.features.push(point);
+                }
+
+                if (ruleSource.features.length > 1) {
+                    linestring.geometry.coordinates = ruleSource.features.map(
+                        (point) => point.geometry.coordinates
+                    );
+
+                    let distance = turf.length(linestring);
+                    distance = `${distance.toLocaleString()}km`;
+
+                    ruleSource.features[ruleSource.features.length - 1].properties.distance = distance;
+                    ruleSource.features.push(linestring);
+                }
+
+                this.map.getSource(this.ruleSourceName).setData(ruleSource);
+            };
+
+            let ruleMouseMoveEvent = (e) => {
+                const features = this.map.queryRenderedFeatures(e.point, {layers: ['measure-point-label-layer', 'measure-point-layer']});
+                this.map.getCanvas().style.cursor = features.length ? 'pointer' : 'crosshair';
+            };
+
+            let isEnable = false;
+            let ruleButton = document.getElementById(this.ruleButtonId);
+            ruleButton.addEventListener('click', () => {
+                if (isEnable) {
+                    // disable rule mode
+                    this.map.removeLayer(ruleLayer.id);
+                    this.map.removeLayer(measurePointLayer.id);
+                    this.map.removeLayer(measurePointLabelLayer.id);
+                    this.map.removeSource(this.ruleSourceName)
+
+                    this.map.off('click', ruleClickEvent);
+                    this.map.off('mousemove', ruleMouseMoveEvent);
+                    this.map.getCanvas().style.cursor = 'grab';
+                    ruleButton.classList.remove('active');
+                } else {
+                    // enable rule mode
+                    ruleSource.features = [];
+                    this.map.addSource(this.ruleSourceName, {type: 'geojson', data: ruleSource});
+                    this.map.addLayer(ruleLayer);
+                    this.map.addLayer(measurePointLayer);
+                    this.map.addLayer(measurePointLabelLayer);
+
+                    this.map.on('click', ruleClickEvent);
+                    this.map.on('mousemove', ruleMouseMoveEvent);
+                    ruleButton.classList.add('active');
+                }
+                isEnable = !isEnable;
+            });
+
     },
     addSourceAndLayersForStops() {
       this.map.addSource('stop-source', {

@@ -945,3 +945,25 @@ a.disabled {color: var(--gris-medio); cursor: default;}
     margin-top: 30px;
     border: 2px solid #99c799;
 }
+
+/* ============   Map ruler   ============== */
+.syncAltSolid {
+    font-size: 29px;
+    color: #4E5F68;
+}
+.syncAltSolid.active {
+    color: var(--link)
+}
+.syncAltSolid .material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 29px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+}
