@@ -68,9 +68,9 @@ export default {
       });
     }
   },
-  mounted() {
+  created() {
     this.$store.dispatch('auth/autologin');
     this.$store.dispatch('lang/loadLanguage', this.$i18n);
   }
 }
-</script>>
+</script>
