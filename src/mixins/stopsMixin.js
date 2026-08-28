@@ -87,7 +87,7 @@ let stopsMixin = {
           options: [
             {name: 'No Info', value: null},
             {name: 'Yes', value: 1},
-            {name: 'No', value: 0},
+            {name: 'No', value: 2},
           ],
           type: Enums.InputType.SIMPLE_SELECT
         },
