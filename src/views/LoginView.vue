@@ -5,7 +5,7 @@
         <div class="user-header">{{ $t('user.login') }}</div>
         <form class="user-form" @submit.prevent="login">
           <div>
-            <label for="username">{{ $t('user.username') }}:</label>
+            <label for="username">{{ $t('user.email') }} ({{ $t('user.username') }}):</label>
             <input name="username" type="text" id="username" v-model="username" required>
           </div>
           <div>

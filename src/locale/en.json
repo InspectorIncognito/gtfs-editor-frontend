@@ -13,7 +13,17 @@
     "createAccount": "Create account",
     "email": "Email",
     "haveAccountQuestion": "Already have an account?",
-    "accountCreatedSuccessfully": "Your account has been created successfully. You will receive an email to verify your account."
+    "accountCreatedSuccessfully": "Your account has been created successfully. You will receive an email to verify your account.",
+    "forgotPasswordTitle": "Forgot Password?",
+    "recoverPasswordInstruction": "Please enter your email (username).",
+    "sendEmail": "Send email",
+    "recoverPasswordEmailNote": "You will receive an email with instructions to reset your password.",
+    "recoverPasswordSentMessage": "Your email has been successfully sent. Please check your inbox for further instructions on how to reset your password. If you don't receive an email, please contact support for assistance.",
+    "newPasswordTitle": "New Password",
+    "newPasswordInstruction": "Please create a new password.",
+    "newPassword": "New password",
+    "change": "Change",
+    "passwordsDoNotMatch": "Passwords do not match."
   },
   "general": {
     "project": "Project",
