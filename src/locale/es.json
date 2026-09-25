@@ -13,7 +13,17 @@
     "createAccount": "Crear cuenta",
     "email": "Correo electrónico",
     "haveAccountQuestion": "¿Ya tienes una cuenta?",
-    "accountCreatedSuccessfully": "Tu cuenta ha sido creada exitosamente. Recibirás un correo electrónico para verificar tu cuenta."
+    "accountCreatedSuccessfully": "Tu cuenta ha sido creada exitosamente. Recibirás un correo electrónico para verificar tu cuenta.",
+    "forgotPasswordTitle": "¿Olvidaste tu contraseña?",
+    "recoverPasswordInstruction": "Ingresa tu correo electrónico (nombre de usuario).",
+    "sendEmail": "Enviar correo",
+    "recoverPasswordEmailNote": "Recibirás un correo electrónico con instrucciones para restablecer tu contraseña.",
+    "recoverPasswordSentMessage": "Tu correo ha sido enviado exitosamente. Revisa tu bandeja de entrada para obtener instrucciones sobre cómo restablecer tu contraseña. Si no recibes un correo, contacta a soporte para obtener ayuda.",
+    "newPasswordTitle": "Nueva contraseña",
+    "newPasswordInstruction": "Crea una nueva contraseña.",
+    "newPassword": "Nueva contraseña",
+    "change": "Cambiar",
+    "passwordsDoNotMatch": "Las contraseñas no coinciden."
   },
   "general": {
     "project": "Proyecto",

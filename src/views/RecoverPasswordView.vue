@@ -2,21 +2,21 @@
   <div class="body">
     <div class="user-container">
       <div id="recover-password" class="user-form-container">
-        <div class="user-header">New Password</div>
+        <div class="user-header">{{ $t('user.newPasswordTitle') }}</div>
         <div class="user-remark">
-          Please create a new password.
+          {{ $t('user.newPasswordInstruction') }}
         </div>
         <form class= "user-form" @submit.prevent="validate">
           <div>
-            <label for="password">New password:</label>
+            <label for="password">{{ $t('user.newPassword') }}:</label>
             <input type="password" id="password" v-model="password" required>
           </div>
           <div>
-            <label for="confirm-password">Confirm Password:</label>
+            <label for="confirm-password">{{ $t('user.confirmPassword') }}:</label>
             <input type="password" id="confirm-password" v-model="confirmPassword" required>
           </div>
           <div>
-            <button class="btn" type="submit">Change</button>
+            <button class="btn" type="submit">{{ $t('user.change') }}</button>
           </div>
         </form>
       </div>
@@ -51,7 +51,7 @@ export default {
       if (this.password === this.confirmPassword) {
         this.change();
       } else {
-        this.errors = 'Passwords do not match';
+        this.errors = this.$t('user.passwordsDoNotMatch');
       }
     }
   },
