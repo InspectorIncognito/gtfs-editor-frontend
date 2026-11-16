@@ -28,6 +28,18 @@ const stopB = {
   stop_name: "Paradero Beta",
 };
 
+const stopAWithParent = {
+  ...stopA,
+  parent_station: 2,
+  parent_station_id: "stop_b",
+};
+
+const clearedStop = {
+  ...stopAWithParent,
+  parent_station: null,
+  parent_station_id: null,
+};
+
 const pagination = {
   current_page: 1,
   next_page_url: null,
@@ -86,6 +98,41 @@ describe("GTFS Stops update", () => {
       cy.wait("@updateStop").its("request.body.parent_station").should("eq", 2);
 
       cy.get(".vuetable-body tr").eq(0).find("td").eq(10).should("contain", "stop_b");
+      cy.get("@getStopsTable.all").should("have.length", requestCountBeforeSave);
+    });
+  });
+
+  it("leaves the parent station empty after clearing it and saving", () => {
+    cy.intercept("GET", /\/api\/projects\/1\/stops\/\?sort=.*/, {
+      pagination,
+      results: [stopAWithParent, stopB],
+    }).as("getStopsTable");
+    cy.intercept("GET", /\/api\/projects\/1\/stops\/\?no_page=True/, [stopAWithParent, stopB]).as("getStopsMap");
+    cy.intercept("GET", /\/api\/projects\/1\/stops\/$/, {
+      pagination: { ...pagination, per_page: 2 },
+      results: [stopAWithParent, stopB],
+    }).as("getStopsOptions");
+    cy.intercept("PATCH", "/api/projects/1/stops/1/", clearedStop).as("updateStop");
+
+    cy.contains("Stops").click();
+    cy.url().should("contain", "/project/1/stops");
+
+    cy.contains("Table view").click();
+    cy.get("@getStopsTable.all").should("have.length", 2);
+    cy.get(".vuetable-body tr").should("have.length", 2);
+
+    cy.get(".vuetable-body tr").eq(0).find(".material-icons").contains("edit").click();
+    cy.get(".vuetable-body tr").eq(0).find(".multiselect__select").first().click();
+    cy.wait("@getStopsOptions");
+    cy.contains(".multiselect__option", "stop_b").click();
+
+    cy.get("@getStopsTable.all").then((requests) => {
+      const requestCountBeforeSave = requests.length;
+
+      cy.get(".table-footer-buttons button").contains("Save").click();
+      cy.wait("@updateStop").its("request.body.parent_station").should("be.null");
+
+      cy.get(".vuetable-body tr").eq(0).find("td").eq(10).invoke("text").should("match", /^\s*$/);
       cy.get("@getStopsTable.all").should("have.length", requestCountBeforeSave);
     });
   });
