@@ -40,6 +40,27 @@ const clearedStop = {
   parent_station_id: null,
 };
 
+const levelOptions = {
+  pagination: {
+    current_page: 1,
+    next_page_url: null,
+    prev_page_url: null,
+    total: 1,
+    per_page: 1,
+    last_page: 1,
+    from: 1,
+    to: 1,
+  },
+  results: [
+    {
+      id: 1,
+      level_id: "level_0",
+      level_index: 0,
+      level_name: "Nivel 0",
+    },
+  ],
+};
+
 const pagination = {
   current_page: 1,
   next_page_url: null,
@@ -133,6 +154,61 @@ describe("GTFS Stops update", () => {
       cy.wait("@updateStop").its("request.body.parent_station").should("be.null");
 
       cy.get(".vuetable-body tr").eq(0).find("td").eq(10).invoke("text").should("match", /^\s*$/);
+      cy.get("@getStopsTable.all").should("have.length", requestCountBeforeSave);
+    });
+  });
+
+  it("shows updated values for input, number, simple select and FK fields", () => {
+    cy.intercept("GET", /\/api\/projects\/1\/stops\/\?sort=.*/, {
+      pagination,
+      results: [stopA, stopB],
+    }).as("getStopsTable");
+    cy.intercept("GET", /\/api\/projects\/1\/stops\/\?no_page=True/, [stopA, stopB]).as("getStopsMap");
+    cy.intercept("GET", /\/api\/projects\/1\/levels\/$/, levelOptions).as("getLevelsOptions");
+    cy.intercept("PATCH", "/api/projects/1/stops/1/", {
+      ...stopA,
+      stop_name: "Paradero Alfa Editado",
+      stop_lat: 18,
+      wheelchair_boarding: 1,
+      level: 1,
+      level_id: "level_0",
+    }).as("updateStop");
+
+    cy.contains("Stops").click();
+    cy.url().should("contain", "/project/1/stops");
+
+    cy.contains("Table view").click();
+    cy.get("@getStopsTable.all").should("have.length", 2);
+    cy.get(".vuetable-body tr").should("have.length", 2);
+
+    const row = () => cy.get(".vuetable-body tr").eq(0);
+
+    row().find(".material-icons").contains("edit").click();
+    row().find("td").eq(3).find("input").clear().type("Paradero Alfa Editado");
+    row().find("td").eq(4).find("input").invoke("val", "18").trigger("input");
+
+    row().find("td").eq(12).find(".multiselect__select").click();
+    cy.contains(".multiselect__option", "Yes").click();
+
+    row().find("td").eq(14).find(".multiselect__select").click();
+    cy.wait("@getLevelsOptions");
+    cy.contains(".multiselect__option", "level_0").click();
+
+    cy.get("@getStopsTable.all").then((requests) => {
+      const requestCountBeforeSave = requests.length;
+
+      cy.get(".table-footer-buttons button").contains("Save").click();
+      cy.wait("@updateStop").then((interception) => {
+        expect(interception.request.body.stop_name).to.eq("Paradero Alfa Editado");
+        expect(interception.request.body.stop_lat).to.eq(18);
+        expect(interception.request.body.wheelchair_boarding).to.eq(1);
+        expect(interception.request.body.level).to.eq(1);
+      });
+
+      row().find("td").eq(3).should("contain", "Paradero Alfa Editado");
+      row().find("td").eq(4).invoke("text").should("match", /18/);
+      row().find("td").eq(12).should("contain", "Yes");
+      row().find("td").eq(14).should("contain", "level_0");
       cy.get("@getStopsTable.all").should("have.length", requestCountBeforeSave);
     });
   });
