@@ -275,6 +275,7 @@ export default {
           }
         }
         this.updateMethod(row).then(response => {
+          Object.assign(row, response.data);
           row.changed = false;
           row.error = false;
           row.errors = {};

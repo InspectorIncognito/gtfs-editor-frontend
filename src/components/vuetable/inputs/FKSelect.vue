@@ -5,7 +5,7 @@
                  @search-change="asyncFind" :class="{error: hasErrors}" :placeholder="$t('general.select')"
                  v-tooltip="{ theme: 'error-tooltip', content: hasErrors?localErrors[0]:'', shown: hasErrors }">
   </MyMultiselect>
-  <span v-else>{{ selectedOption ? selectedOption.name : '' }}</span>
+  <span v-else>{{ selectedOption ? selectedOption.name : (data[field.name] || '') }}</span>
 </template>
 
 <script>
@@ -70,19 +70,25 @@ export default {
   },
   methods: {
     setOption() {
-      if (this.data[this.field.id_field]) {
-        let option = {
-          name: this.data[this.field.name],
-          value: this.data[this.field.id_field]
-        };
-        this.selectedOption = option;
-        if (!this.options.find(opt => opt.value === option.value)) {
-          this.options.push(option);
-          this.val = option;
-        }
+      let value = this.data[this.field.id_field];
+      if (value === null || value === undefined || value === '') {
+        this.selectedOption = null;
+        this.val = null;
+        return;
       }
+      let option = this.options.find(opt => opt.value === value);
+      if (!option) {
+        option = {
+          name: this.data[this.field.name],
+          value: value
+        };
+        this.options.push(option);
+      }
+      this.selectedOption = option;
+      this.val = option;
     },
     onChange(option) {
+      this.selectedOption = option || null;
       this.$emit("input", option ? option.value : null);
     },
     onOpen() {
@@ -110,7 +116,9 @@ export default {
             value: result.id
           };
         });
-        options.concat([this.selectedOption]);
+        if (this.selectedOption && !options.find(opt => opt.value === this.selectedOption.value)) {
+          options.push(this.selectedOption);
+        }
         this.options = options;
         this.isLoading = false;
       });
